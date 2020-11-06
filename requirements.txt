@@ -1,2 +1,5 @@
 pycodestyle==2.6.0
+pytest-xdist==2.1.0
 pytest==6.1.2
+setuptools==50.3.2
+wheel==0.35.1

@@ -8,6 +8,7 @@ with open(path.join(path.abspath(path.dirname(__file__)), 'README.md'), encoding
 setup(
     install_requires=[
         'pycodestyle==2.6.0',
+        'pytest-xdist==2.1.0',
         'pytest==6.1.2',
     ],
     long_description=long_description,
