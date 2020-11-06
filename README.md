@@ -1,7 +1,7 @@
-# Overview
+## Overview
 Python library for thenewboston.
 
-# Project Setup
+## Project Setup
 
 Follow the steps below to set up the project on your environment. If you run into any problems, feel free to leave a 
 GitHub Issue or reach out to any of our communities above.
