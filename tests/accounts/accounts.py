@@ -1,6 +1,6 @@
 from nacl.signing import SigningKey, VerifyKey
 
-from tnb.accounts import create_account
+from tnb.accounts.accounts import create_account
 
 
 def test_create_account():
