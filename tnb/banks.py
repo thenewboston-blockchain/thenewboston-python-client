@@ -32,17 +32,17 @@ class Bank(BaseClient):
         """
         return self.fetch('/validators')
 
-    def patch_accounts(self, account_number, trust, signature):
+    def patch_account(self, account_number, node_id, trust, signature):
         """
         Send a PATCH request of an account to a Bank
         Return response as Python object
         """
-        resource = f'accounts/{account_number}'
+        resource = f'/accounts/{account_number}'
         body = {
             "message": {
                 "trust": trust
             },
-            "node_identifier": self.node_id,
+            "node_identifier": node_id,
             "signature": signature
         }
 

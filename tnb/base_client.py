@@ -9,7 +9,7 @@ class BaseClient(object):
     """
     def __init__(self, *, address, protocol='http', port=80):
         self.address = address
-        self.portocol = protocol
+        self.protocol = protocol
         self.port = port
         self.base_url = f"{protocol}://{address}:{port}/"
 
