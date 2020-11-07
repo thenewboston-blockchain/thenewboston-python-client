@@ -3,7 +3,7 @@ from os import path
 from nacl.encoding import HexEncoder
 from nacl.signing import SigningKey
 
-from tnb.accounts.accounts import create_account
+from tnb.accounts.manage import create_account
 
 
 def create_account_and_save_signing_key_file(file):

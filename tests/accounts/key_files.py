@@ -5,7 +5,7 @@ from tnb.accounts.key_files import (
     read_signing_key_file,
     write_signing_key_file,
 )
-from tnb.accounts.accounts import create_account
+from tnb.accounts.manage import create_account
 
 
 def test_create_account_and_save_signing_key_file(tmpdir):
