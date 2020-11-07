@@ -25,7 +25,7 @@ class Validator(BaseClient):
         """
         return self.fetch("/accounts/{}/balance_lock".format(account_number))
 
-    def fetch_confirmation_blocks(self, block_identifier):
+    def fetch_confirmation_block(self, block_identifier):
         """
         Fetch confirmation block by block_identifier
         Return response as Python object
