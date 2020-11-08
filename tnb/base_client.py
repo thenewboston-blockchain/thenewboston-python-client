@@ -15,7 +15,7 @@ class BaseClient(object):
 
     def send_request(self, method, resource, **kwargs):
         """
-        Fetch `resouce` from a Bank
+        Fetch `resource` from a Node
         Return response as Python object
         """
         url = urljoin(self.base_url, resource)
@@ -26,35 +26,35 @@ class BaseClient(object):
 
     def fetch(self, resource, **kwargs):
         """
-        GET a `resource` from a Bank
+        GET a `resource` from a Node
         Return response as Python object
         """
         return self.send_request('GET', resource, **kwargs)
 
     def delete(self, resource, **kwargs):
         """
-        DELETE a `resource` fron a Bank
+        DELETE a `resource` from a Node
         Return response as Python object
         """
         return self.send_request('DELETE', resource, **kwargs)
 
     def patch(self, resource, body, **kwargs):
         """
-        PATCH a `resource` to a Bank
+        PATCH a `resource` to a Node
         Return response as Python object
         """
         return self.send_request('PATCH', resource, json=body, **kwargs)
 
     def post(self, resource, body, **kwargs):
         """
-        POST a `resource` to a Bank
+        POST a `resource` to a Node
         Return response as Python object
         """
         return self.send_request('POST', resource, json=body, **kwargs)
 
     def put(self, resource, body, **kwargs):
         """
-        PUT a `resource` to a Bank
+        PUT a `resource` to a Node
         Return response as Python object
         """
         return self.send_request('PUT', resource, json=body, **kwargs)
