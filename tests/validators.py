@@ -1,6 +1,3 @@
-import pytest
-import requests_mock
-
 from tnb.validators import Validator
 
 
