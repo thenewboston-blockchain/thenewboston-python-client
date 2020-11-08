@@ -12,7 +12,7 @@ setup(
         'pytest-xdist==2.1.0',
         'pytest==6.1.2',
         'requests==2.24.0',
-        'requests-mock==1.8.0'
+        'requests-mock==1.8.0',
     ],
     long_description=long_description,
     long_description_content_type='text/markdown',
