@@ -33,6 +33,13 @@ class Bank(BaseClient):
     def patch_account(self, account_number, node_id, trust, signature):
         """
         Send a PATCH request of an account to a Bank
+
+        :paran account_number: Specify the account will be patched
+        :param node_id: The Node Identifier of the Bank
+        :param trust: The value assigned to trust level of an account
+        :param signature: The signature is signed by Bank's Node Identifier
+            Signing Key
+
         Return response as Python object
         """
         resource = f'/accounts/{account_number}'
@@ -49,6 +56,11 @@ class Bank(BaseClient):
     def connection_requests(self, node_id, signature):
         """
         Send a connection request to a Bank
+
+        :param node_id: The Node Identifier of the Bank
+        :param signature: The signature is signed by Bank's Node Identifier
+            Signing Key
+
         Return response as Python object
         """
         body = {
