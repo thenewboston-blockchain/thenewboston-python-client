@@ -1,5 +1,3 @@
-import requests
-
 from tnb.base_client import BaseClient
 
 

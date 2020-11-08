@@ -1,6 +1,4 @@
 import pytest
-import requests_mock
-from requests.exceptions import HTTPError
 
 from tnb.banks import Bank
 
