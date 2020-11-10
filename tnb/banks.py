@@ -7,28 +7,28 @@ class Bank(BaseClient):
         Fetch accounts from a Bank
         Return response as Python object
         """
-        return self.fetch('/accounts')
+        return self.fetch("/accounts")
 
     def fetch_bank_transactions(self):
         """
         Get transactions from a Bank
         Return response as Python object
         """
-        return self.fetch('/bank_transactions')
+        return self.fetch("/bank_transactions")
 
     def fetch_invalid_blocks(self):
         """
         Get invalid block from a Bank
         Return response as Python object
         """
-        return self.fetch('/invalid_blocks')
+        return self.fetch("/invalid_blocks")
 
     def fetch_validators(self):
         """
         Get validators from a Bank
         Return response as Python object
         """
-        return self.fetch('/validators')
+        return self.fetch("/validators")
 
     def patch_account(self, account_number, node_id, trust, signature):
         """
@@ -42,13 +42,11 @@ class Bank(BaseClient):
 
         Return response as Python object
         """
-        resource = f'/accounts/{account_number}'
+        resource = f"/accounts/{account_number}"
         body = {
-            "message": {
-                "trust": trust
-            },
+            "message": {"trust": trust},
             "node_identifier": node_id,
-            "signature": signature
+            "signature": signature,
         }
 
         return self.patch(resource, body=body)
@@ -67,10 +65,10 @@ class Bank(BaseClient):
             "message": {
                 "ip_address": self.address,
                 "port": self.port,
-                "protocol": self.protocol
+                "protocol": self.protocol,
             },
             "node_identifier": node_id,
             "signature": signature,
         }
 
-        return self.post('/connection_requests', body=body)
+        return self.post("/connection_requests", body=body)
