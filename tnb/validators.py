@@ -18,7 +18,7 @@ class Validator(BaseClient):
         Return response as a Python object
         """
 
-        return self.fetch("/accounts/{}/balance".format(account_number))
+        return self.fetch(f"/accounts/{account_number}/balance")
 
     def fetch_account_balance_lock(self, account_number):
         """
@@ -27,7 +27,7 @@ class Validator(BaseClient):
 
         Return response as a Python object
         """
-        return self.fetch("/accounts/{}/balance_lock".format(account_number))
+        return self.fetch(f"/accounts/{account_number}/balance_lock")
 
     def fetch_confirmation_block(self, block_identifier):
         """
@@ -37,4 +37,4 @@ class Validator(BaseClient):
         Return response as Python object
         """
 
-        return self.fetch("/confirmation_blocks/{}/valid".format(block_identifier))
+        return self.fetch(f"/confirmation_blocks/{block_identifier}/valid")
