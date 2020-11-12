@@ -34,7 +34,7 @@ class Bank(BaseClient):
         """
         Send a PATCH request of an account to a Bank
 
-        :paran account_number: Specify the account will be patched
+        :param account_number: Specify the account will be patched
         :param node_id: The Node Identifier of the Bank
         :param trust: The value assigned to trust level of an account
         :param signature: The signature is signed by Bank's Node Identifier
