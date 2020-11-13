@@ -1,5 +1,4 @@
 from tnb.base_client import BaseClient
-from nacl.signing import SigningKey
 
 
 class Bank(BaseClient):
