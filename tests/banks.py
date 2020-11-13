@@ -102,7 +102,7 @@ def test_success_fetch_validators(requests_mock):
 
 def test_success_fetch_banks(requests_mock):
     result = {
-        'count': 3,
+        'count': 1,
         'next': None,
         'previous': None,
         'results': [
