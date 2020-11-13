@@ -74,3 +74,34 @@ class Bank(BaseClient):
         }
 
         return self.post('/connection_requests', body=body)
+
+    def fetch_invalid_blocks(self):
+        """
+        Fetch invalid blocks from a Bank
+        Return response as Python object
+        """
+        return self.fetch('/invalid_blocks')
+
+    def post_invalid_block(self, block, block_identifier, primary_validator_node_identifier, node_identifier, signature):
+        """
+        Send a connection request to a Bank
+
+        :param block: The invalid block
+        :param block_identifier: ID for the block
+        :param primary_validator_node_identifier: Primary Validator's Node Identifier
+        :param node_identifier: Node Identifier of Confirmation Validator sending the request
+        :param signature: Hex value of the signed message
+
+        Return response as Python object
+        """
+        body = {
+            "message": {
+                "block": block,
+                "block_identifier": block_identifier,
+                "primary_validator_node_identifier": primary_validator_node_identifier
+            },
+            "node_identifier": node_identifier,
+            "signature": signature
+        }
+
+        return self.post('/invalid_blocks', body=body)
