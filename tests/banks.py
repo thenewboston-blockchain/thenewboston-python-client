@@ -100,6 +100,60 @@ def test_success_fetch_validators(requests_mock):
     assert response == result
 
 
+def test_success_fetch_banks(requests_mock):
+    result = {
+        'count': 3,
+        'next': None,
+        'previous': None,
+        'results': [
+            {
+                'account_number': '7977b7f7a6f52bf9ebda93694d9276e9e23049eb40b263799fb2a35fa9316b9b',
+                'ip_address': '143.110.141.4',
+                'node_identifier': '735bfc11f802dbb8365998703539823d751ac5f5f82905143fba8a84d967f29b',
+                'port': None,
+                'protocol': 'http',
+                'version': 'v1.0',
+                'default_transaction_fee': 2,
+                'trust': '0.00'}]
+    }
+
+    requests_mock.get(
+        "http://10.2.3.4:80/banks",
+        json=result,
+    )
+
+    bank = Bank(address="10.2.3.4")
+    response = bank.fetch_banks()
+
+    assert response == result
+
+
+def test_success_patch_trust_level(requests_mock):
+    result = {
+        "account_number": "5e12967707909e62b2bb2036c209085a784fabbc3deccefee70052b6181c8ed8",
+        "ip_address": "192.168.1.232",
+        "node_identifier": "d5356888dc9303e44ce52b1e06c3165a7759b9df1e6a6dfbd33ee1c3df1ab4d1",
+        "port": "80",
+        "protocol": "http",
+        "version": "v1.0",
+        "default_transaction_fee": "1.0000000000000000",
+        "trust": "76.26"
+    }
+    requests_mock.patch(
+        "http://10.2.3.4:80/banks/d5356888dc9303e44ce52b1e06c3165a7759b9df1e6a6dfbd33ee1c3df1ab4d1",
+        json=result,
+    )
+
+    bank = Bank(address="10.2.3.4")
+    response = bank.patch_trust_level(
+        trust=99.98,
+        signature="d11c5f7fcc5f541a94ceee7c73972b21c73912e41f06cc22989863fa22529f55d0b81bc9f95a203191be0259518bdfe073de77d87a7230d37bb14f21666ee40a",
+        node_identifier="d5356888dc9303e44ce52b1e06c3165a7759b9df1e6a6dfbd33ee1c3df1ab4d1"
+    )
+
+    assert response == result
+
+
 def test_success_patch_account(requests_mock):
     result = {
         "id": "64426fc5-b3ac-42fb-b75b-d5ccfcdc6872",

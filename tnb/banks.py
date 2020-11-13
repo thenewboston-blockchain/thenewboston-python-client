@@ -1,4 +1,5 @@
 from tnb.base_client import BaseClient
+from nacl.signing import SigningKey
 
 
 class Bank(BaseClient):
@@ -29,6 +30,33 @@ class Bank(BaseClient):
         Return response as Python object
         """
         return self.fetch('/validators')
+
+    def fetch_banks(self):
+        """
+        Get banks from current bank.
+        Return response as a Python object
+        """
+
+        return self.fetch('/banks')
+
+    def patch_trust_level(self, trust, node_identifier, signature):
+        """
+        Set bank trust level
+        :param trust: Trust value as a float
+        :param node_identifier: Node identifier of bank
+        :param signature: Message signed by signing key
+        Returns response as Python object
+        """
+        resource = f'/banks/{node_identifier}'
+        body = {
+            "message": {
+                "trust": trust
+            },
+            "node_identifier": node_identifier,
+            "signature": signature
+        }
+
+        return self.patch(resource, body=body)
 
     def patch_account(self, account_number, node_id, trust, signature):
         """
