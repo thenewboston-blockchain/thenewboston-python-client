@@ -66,7 +66,7 @@ class Bank(BaseClient):
             "message": {
                 "trust": trust
             },
-            "node_identifier": node_identifier,
+            "node_identifier": node_id,
             "signature": signature
         }
 
