@@ -30,6 +30,40 @@ class Bank(BaseClient):
         """
         return self.fetch("/validators")
 
+    def fetch_validator_confirmation_services(self) -> list:
+        """
+        Get validators confirmation services from a Bank
+
+        Return response as list
+        """
+        return self.fetch('/validator_confirmation_services')
+
+    def create_validator_confirmation_service(
+            self, msg_end: str, msg_start: str, node_id: str,
+            signature: str) -> dict:
+        """
+        Get validators confirmation services from a Bank
+
+        :param msg_end: ISO 8601 string that represents the end datetime
+            of message
+        :param msg_start: ISO 8601 string that represents the start datetime
+            of message
+        :param node_id: The Node Identifier of the Bank
+        :param signature: The signature is signed by Bank's Node Identifier
+            Signing Key
+
+        Return response as dict
+        """
+        body = {
+            "message": {
+                "end": msg_end,
+                "start": msg_start
+            },
+            "node_identifier": node_id,
+            "signature": signature
+        }
+        return self.post('/validator_confirmation_services', body=body)
+
     def patch_account(self, account_number, node_id, trust, signature):
         """
         Send a PATCH request of an account to a Bank
