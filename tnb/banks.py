@@ -84,7 +84,7 @@ class Bank(BaseClient):
 
     def post_invalid_block(self, block, block_identifier, primary_validator_node_identifier, node_identifier, signature):
         """
-        Send a connection request to a Bank
+        Post an invalid block to a Bank
 
         :param block: The invalid block
         :param block_identifier: ID for the block
