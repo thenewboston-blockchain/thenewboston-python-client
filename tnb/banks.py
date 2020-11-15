@@ -36,7 +36,7 @@ class Bank(BaseClient):
         Return response as a Python object
         """
 
-        return self.fetch('/banks')
+        return self.fetch("/banks")
 
     def patch_trust_level(self, trust, node_identifier, signature):
         """
@@ -46,13 +46,11 @@ class Bank(BaseClient):
         :param signature: Message signed by signing key
         Returns response as Python object
         """
-        resource = f'/banks/{node_identifier}'
+        resource = f"/banks/{node_identifier}"
         body = {
-            "message": {
-                "trust": trust
-            },
+            "message": {"trust": trust},
             "node_identifier": node_identifier,
-            "signature": signature
+            "signature": signature,
         }
 
         return self.patch(resource, body=body)
@@ -84,19 +82,17 @@ class Bank(BaseClient):
 
         :param node_id: Node identifier of the Bank
         :param trust: The value assigned to trust level of an account
-        :param signature: The signature is signed by Bank's Node Identifier 
+        :param signature: The signature is signed by Bank's Node Identifier
             Signing Key
 
         Return response as Python object
         """
-        resource = f'/validators/{node_id}'
+        resource = f"/validators/{node_id}"
 
         body = {
-            "message": {
-                "trust": trust
-            },
+            "message": {"trust": trust},
             "node_identifier": node_id,
-            "signature": signature
+            "signature": signature,
         }
 
         return self.patch(resource, body=body)
