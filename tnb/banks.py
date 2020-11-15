@@ -101,6 +101,7 @@ class Bank(BaseClient):
                 "txs": transactions,
             },
             "signature": signature
+
         }
 
         return self.post("/blocks", body=body)
