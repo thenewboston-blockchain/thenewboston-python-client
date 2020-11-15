@@ -7,7 +7,8 @@ class BaseClient(object):
     """
     Common class for sending request to server
     """
-    def __init__(self, *, address, protocol='http', port=80):
+
+    def __init__(self, *, address, protocol="http", port=80):
         self.address = address
         self.protocol = protocol
         self.port = port
@@ -29,32 +30,32 @@ class BaseClient(object):
         GET a `resource` from a Node
         Return response as Python object
         """
-        return self.send_request('GET', resource, **kwargs)
+        return self.send_request("GET", resource, **kwargs)
 
     def delete(self, resource, **kwargs):
         """
         DELETE a `resource` from a Node
         Return response as Python object
         """
-        return self.send_request('DELETE', resource, **kwargs)
+        return self.send_request("DELETE", resource, **kwargs)
 
     def patch(self, resource, body, **kwargs):
         """
         PATCH a `resource` to a Node
         Return response as Python object
         """
-        return self.send_request('PATCH', resource, json=body, **kwargs)
+        return self.send_request("PATCH", resource, json=body, **kwargs)
 
     def post(self, resource, body, **kwargs):
         """
         POST a `resource` to a Node
         Return response as Python object
         """
-        return self.send_request('POST', resource, json=body, **kwargs)
+        return self.send_request("POST", resource, json=body, **kwargs)
 
     def put(self, resource, body, **kwargs):
         """
         PUT a `resource` to a Node
         Return response as Python object
         """
-        return self.send_request('PUT', resource, json=body, **kwargs)
+        return self.send_request("PUT", resource, json=body, **kwargs)
