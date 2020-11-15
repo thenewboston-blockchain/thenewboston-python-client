@@ -38,6 +38,13 @@ class Bank(BaseClient):
 
         return self.fetch("/banks")
 
+    def fetch_config(self):
+        """
+        Get config from a Bank
+        Return response as Python object
+        """
+        return self.fetch("/config")
+
     def patch_trust_level(self, trust, node_identifier, signature):
         """
         Set bank trust level
