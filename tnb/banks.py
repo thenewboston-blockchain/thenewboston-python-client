@@ -51,6 +51,29 @@ class Bank(BaseClient):
 
         return self.patch(resource, body=body)
 
+    def patch_validator(self, node_id, trust, signature):
+        """
+        Send a PATCH request of a validator to a Bank
+
+        :param node_id: Node identifier of the Bank
+        :param trust: The value assigned to trust level of an account
+        :param signature: The signature is signed by Bank's Node Identifier 
+            Signing Key
+
+        Return response as Python object
+        """
+        resource = f'/validators/{node_id}'
+
+        body = {
+            "message": {
+                "trust": trust
+            },
+            "node_identifier": node_id,
+            "signature": signature
+        }
+
+        return self.patch(resource, body=body)
+
     def connection_requests(self, node_id, signature):
         """
         Send a connection request to a Bank
