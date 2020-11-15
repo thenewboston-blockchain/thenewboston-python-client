@@ -100,6 +100,40 @@ def test_success_fetch_validators(requests_mock):
     assert response == result
 
 
+def test_success_fetch_config(requests_mock):
+    result = {
+        "primary_validator": {
+            "account_number": "1a105575c681c5c4bbd9e88a90346f356051646dcee254afd5fdc67782cc6e56",
+            "ip_address": "20.188.33.93",
+            "node_identifier": "4a02e9e03ca6f2e64fe8dc675da73e31b8112e435439189012944f0b7adebf50",
+            "port": None,
+            "protocol": "http",
+            "version": "v1.0",
+            "default_transaction_fee": 1,
+            "root_account_file": "http://20.188.33.93/media/root_account_file.json",
+            "root_account_file_hash": "b2885f94cd099a8c5ba5355ff9cdd69252b4cad2541e32d20152702397722cf5",
+            "seed_block_identifier": "",
+            "daily_confirmation_rate": 100,
+            "trust": "100.00"
+        },
+        "account_number": "5878f25f576eb9d398ab1b6dd8b2e831ad74a58e6d6b8c8bea1c48f69a9db42d",
+        "ip_address": "20.188.58.140",
+        "node_identifier": "d1f994720d89c9d3b300367fdb85a452fd1fbb7d60c2e2707ff059e8df48e081",
+        "port": None,
+        "protocol": "http",
+        "version": "v1.0",
+        "default_transaction_fee": 1,
+        "node_type": "BANK"
+    }
+    requests_mock.get(
+        "http://10.2.3.4:80/config",
+        json=result,
+    )
+    bank = Bank(address="10.2.3.4")
+    response = bank.fetch_config()
+    assert response == result
+
+
 def test_success_patch_account(requests_mock):
     result = {
         "id": "64426fc5-b3ac-42fb-b75b-d5ccfcdc6872",

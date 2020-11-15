@@ -29,6 +29,13 @@ class Bank(BaseClient):
         Return response as Python object
         """
         return self.fetch('/validators')
+    
+    def fetch_config(self):
+        """
+        Get config from a Bank
+        Return response as Python object
+        """
+        return self.fetch('/config')
 
     def patch_account(self, account_number, node_id, trust, signature):
         """
