@@ -15,7 +15,7 @@ pip3 install -r requirements.txt
 
 To run tests:
 ```
-pytest
+pytest --black
 ```
 
 ## Building
