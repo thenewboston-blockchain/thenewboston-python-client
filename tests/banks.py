@@ -72,6 +72,58 @@ def test_success_fetch_invalid_blocks(requests_mock):
     assert response == result
 
 
+def test_success_fetch_confirmations_blocks(requests_mock):
+
+    blocks = [
+        {
+            "id": "e7c5c2e0-8ed1-4eb3-abd8-97fa2e5ca8db",
+            "created_date": "2020-10-08T02:18:07.908635Z",
+            "modified_date": "2020-10-08T02:18:07.908702Z",
+            "block_identifier": "824614aa97edb391784b17ce6956b70aed31edf741c1858d43ae4d566b2a13ed",
+            "block": "c6fc11cf-8948-4d32-96c9-d56caa6d5b24",
+            "validator": "e2a138b0-ebe9-47d2-a146-fb4d9d9ca378",
+        },
+        {
+            "id": "78babf4b-74ed-442e-b5ab-7b23345c18f8",
+            "created_date": "2020-10-08T02:18:07.998146Z",
+            "modified_date": "2020-10-08T02:18:07.998206Z",
+            "block_identifier": "824614aa97edb391784b17ce6956b70aed31edf741c1858d43ae4d566b2a13ed",
+            "block": "c6fc11cf-8948-4d32-96c9-d56caa6d5b24",
+            "validator": "97a878ac-328a-47b6-ac93-be6deee75d94",
+        },
+    ]
+
+    result_page1 = {
+        "count": 2,
+        "next": "http://10.2.3.4:80/confirmation_blocks?limit=50&offset=1",
+        "previous": None,
+        "results": [
+            blocks[0],
+        ],
+    }
+
+    result_page2 = {
+        "count": 2,
+        "next": None,
+        "previous": "http://10.2.3.4:80/confirmation_blocks",
+        "results": [
+            blocks[1],
+        ],
+    }
+    requests_mock.get(
+        "http://10.2.3.4:80/confirmation_blocks",
+        json=result_page1,
+    )
+    requests_mock.get(
+        "http://10.2.3.4:80/confirmation_blocks?limit=50&offset=1",
+        json=result_page2,
+    )
+
+    bank = Bank(address="10.2.3.4")
+    response = bank.fetch_confirmation_blocks()
+    assert response == blocks
+
+
 def test_success_fetch_validators(requests_mock):
     result = [
         {
@@ -211,6 +263,23 @@ def test_success_patch_validator(requests_mock):
         node_id="d5356888dc9303e44ce52b1e06c3165a7759b9df1e6a6dfbd33ee1c3df1ab4d1",
         trust=76.28,
         signature="b9106148b9c6d445f6a5fe7bb54b552ac2ff639cb72e2af70f7565904120dbb2040987c6cad559d7aa3b507c8d475af9291e4faee4930b324996c7a3c0696805",
+    )
+
+    assert response == result
+
+
+def test_success_send_confirmation_block(requests_mock):
+    result = []
+    requests_mock.post(
+        "http://10.2.3.4:80/confirmation_blocks",
+        json=result,
+    )
+
+    bank = Bank(address="10.2.3.4")
+    response = bank.send_confirmation_block(
+        message={"block": None},
+        node_id="d5356888dc9303e44ce52b1e06c3165a7759b9df1e6a6dfbd33ee1c3df1",
+        signature="f41788fe19690a67abe3336d4ca84565c090691efae0e5cdd8bf02e12",
     )
 
     assert response == result

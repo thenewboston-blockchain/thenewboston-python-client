@@ -23,6 +23,13 @@ class Bank(BaseClient):
         """
         return self.fetch("/invalid_blocks")
 
+    def fetch_confirmation_blocks(self):
+        """
+        Get confirmation blocks from a Bank
+        Return response as Python object
+        """
+        return self.fetch_multiple_page("/confirmation_blocks")
+
     def fetch_validators(self):
         """
         Get validators from a Bank
@@ -96,6 +103,25 @@ class Bank(BaseClient):
         }
 
         return self.patch(resource, body=body)
+
+    def send_confirmation_block(self, message, node_id, signature):
+        """
+        Send a confirmation block to a Bank.
+
+        :param message: The message inside the confirmation block
+        :param node_id: The Node Identifier of the Bank
+        :param signature: The signature is signed by Bank's Node Identifier
+            Signing Key
+
+        Return response as Python object
+        """
+        body = {
+            "message": message,
+            "node_identifier": node_id,
+            "signature": signature,
+        }
+
+        return self.post("/confirmation_blocks", body=body)
 
     def connection_requests(self, node_id, signature):
         """
