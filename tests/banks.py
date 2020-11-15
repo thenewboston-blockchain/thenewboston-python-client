@@ -106,19 +106,21 @@ def test_success_fetch_validators(requests_mock):
 
 def test_success_fetch_banks(requests_mock):
     result = {
-        'count': 1,
-        'next': None,
-        'previous': None,
-        'results': [
+        "count": 1,
+        "next": None,
+        "previous": None,
+        "results": [
             {
-                'account_number': '7977b7f7a6f52bf9ebda93694d9276e9e23049eb40b263799fb2a35fa9316b9b',
-                'ip_address': '143.110.141.4',
-                'node_identifier': '735bfc11f802dbb8365998703539823d751ac5f5f82905143fba8a84d967f29b',
-                'port': None,
-                'protocol': 'http',
-                'version': 'v1.0',
-                'default_transaction_fee': 2,
-                'trust': '0.00'}]
+                "account_number": "7977b7f7a6f52bf9ebda93694d9276e9e23049eb40b263799fb2a35fa9316b9b",
+                "ip_address": "143.110.141.4",
+                "node_identifier": "735bfc11f802dbb8365998703539823d751ac5f5f82905143fba8a84d967f29b",
+                "port": None,
+                "protocol": "http",
+                "version": "v1.0",
+                "default_transaction_fee": 2,
+                "trust": "0.00",
+            }
+        ],
     }
 
     requests_mock.get(
@@ -141,7 +143,7 @@ def test_success_patch_trust_level(requests_mock):
         "protocol": "http",
         "version": "v1.0",
         "default_transaction_fee": "1.0000000000000000",
-        "trust": "76.26"
+        "trust": "76.26",
     }
     requests_mock.patch(
         "http://10.2.3.4:80/banks/d5356888dc9303e44ce52b1e06c3165a7759b9df1e6a6dfbd33ee1c3df1ab4d1",
@@ -152,7 +154,7 @@ def test_success_patch_trust_level(requests_mock):
     response = bank.patch_trust_level(
         trust=99.98,
         signature="d11c5f7fcc5f541a94ceee7c73972b21c73912e41f06cc22989863fa22529f55d0b81bc9f95a203191be0259518bdfe073de77d87a7230d37bb14f21666ee40a",
-        node_identifier="d5356888dc9303e44ce52b1e06c3165a7759b9df1e6a6dfbd33ee1c3df1ab4d1"
+        node_identifier="d5356888dc9303e44ce52b1e06c3165a7759b9df1e6a6dfbd33ee1c3df1ab4d1",
     )
 
     assert response == result
@@ -195,7 +197,7 @@ def test_success_patch_validator(requests_mock):
         "root_account_file_hash": "4694e1ee1dcfd8ee5f989e59ae40a9f751812bf5ca52aca2766b322c4060672b",
         "seed_block_identifier": "",
         "daily_confirmation_rate": None,
-        "trust": "76.28"
+        "trust": "76.28",
     }
 
     requests_mock.patch(
