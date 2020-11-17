@@ -132,7 +132,7 @@ def test_success_fetch_validator_confirmation_services(requests_mock):
             "modified_date": "2020-07-09T22:10:37.393578Z",
             "end": "2020-08-09T22:10:24Z",
             "start": "2020-07-09T22:10:25Z",
-            "validator": "51461a75-dd8d-4133-81f4-543a3b054149"
+            "validator": "51461a75-dd8d-4133-81f4-543a3b054149",
         },
         {
             "id": "e2055637-67ff-4479-aec6-a8095d513862",
@@ -140,8 +140,8 @@ def test_success_fetch_validator_confirmation_services(requests_mock):
             "modified_date": "2020-07-09T22:10:37.393578Z",
             "end": "2020-08-09T22:10:24Z",
             "start": "2020-07-09T22:10:25Z",
-            "validator": "10308b02-d577-484e-953c-0a2bdb5e3d83"
-        }
+            "validator": "10308b02-d577-484e-953c-0a2bdb5e3d83",
+        },
     ]
     requests_mock.get(
         "http://10.2.3.4:80/validator_confirmation_services",
@@ -161,7 +161,7 @@ def test_success_create_validator_confirmation_service(requests_mock):
         "modified_date": "2020-07-10T02:38:44.917601Z",
         "end": "2020-07-09T22:10:25Z",
         "start": "2020-08-09T22:10:25Z",
-        "validator": "fcd2dce8-9e4f-4bf1-8dac-cdbaf64e5ce8"
+        "validator": "fcd2dce8-9e4f-4bf1-8dac-cdbaf64e5ce8",
     }
     requests_mock.post(
         "http://10.2.3.4:80/validator_confirmation_services",
@@ -170,8 +170,8 @@ def test_success_create_validator_confirmation_service(requests_mock):
 
     bank = Bank(address="10.2.3.4")
     response = bank.create_validator_confirmation_service(
-        msg_start='2020-07-09T22:10:25Z',
-        msg_end='2020-07-09T22:10:25Z',
+        msg_start="2020-07-09T22:10:25Z",
+        msg_end="2020-07-09T22:10:25Z",
         node_id="d5356888dc9303e44ce52b1e06c3165a7759b9df1e6a6dfbd33ee1c3df1a",
         signature="f41788fe19690a67abe3336d4ca84565c090691efae0e5cdd8bf02e126",
     )

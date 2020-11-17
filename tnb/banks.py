@@ -43,10 +43,11 @@ class Bank(BaseClient):
 
         Return response as list
         """
-        return self.fetch('/validator_confirmation_services')
+        return self.fetch("/validator_confirmation_services")
 
-    def create_validator_confirmation_service(self, msg_end, msg_start,
-                                              node_id, signature):
+    def create_validator_confirmation_service(
+        self, msg_end, msg_start, node_id, signature
+    ):
         """
         Get validators confirmation services from a Bank
 
@@ -61,14 +62,11 @@ class Bank(BaseClient):
         Return response as dict
         """
         body = {
-            "message": {
-                "end": msg_end,
-                "start": msg_start
-            },
+            "message": {"end": msg_end, "start": msg_start},
             "node_identifier": node_id,
-            "signature": signature
+            "signature": signature,
         }
-        return self.post('/validator_confirmation_services', body=body)
+        return self.post("/validator_confirmation_services", body=body)
 
     def fetch_banks(self):
         """
