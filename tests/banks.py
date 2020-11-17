@@ -1,5 +1,3 @@
-import pytest
-
 from tnb.banks import Bank
 
 
@@ -294,7 +292,8 @@ def test_success_patch_trust_level(requests_mock):
     bank = Bank(address="10.2.3.4")
     response = bank.patch_trust_level(
         trust=99.98,
-        signature="d11c5f7fcc5f541a94ceee7c73972b21c73912e41f06cc22989863fa22529f55d0b81bc9f95a203191be0259518bdfe073de77d87a7230d37bb14f21666ee40a",
+        signature="d11c5f7fcc5f541a94ceee7c73972b21c73912e41f06cc22989863fa22529"
+        "f55d0b81bc9f95a203191be0259518bdfe073de77d87a7230d37bb14f21666ee40a",
         node_identifier="d5356888dc9303e44ce52b1e06c3165a7759b9df1e6a6dfbd33ee1c3df1ab4d1",
     )
 
@@ -334,7 +333,8 @@ def test_success_patch_validator(requests_mock):
         "protocol": "http",
         "version": "v1.0",
         "default_transaction_fee": "4.0000000000000000",
-        "root_account_file": "https://gist.githubusercontent.com/buckyroberts/519b5cb82a0a5b5d4ae8a2175b722520/raw/9237deb449e27cab93cb89ea3346ecdfc61fe9ea/0.json",
+        "root_account_file": "https://gist.githubusercontent.com/buckyroberts/519b5cb82a0a5b5d4ae8a2175b722520"
+        "/raw/9237deb449e27cab93cb89ea3346ecdfc61fe9ea/0.json",
         "root_account_file_hash": "4694e1ee1dcfd8ee5f989e59ae40a9f751812bf5ca52aca2766b322c4060672b",
         "seed_block_identifier": "",
         "daily_confirmation_rate": None,
@@ -351,7 +351,9 @@ def test_success_patch_validator(requests_mock):
     response = bank.patch_validator(
         node_id="d5356888dc9303e44ce52b1e06c3165a7759b9df1e6a6dfbd33ee1c3df1ab4d1",
         trust=76.28,
-        signature="b9106148b9c6d445f6a5fe7bb54b552ac2ff639cb72e2af70f7565904120dbb2040987c6cad559d7aa3b507c8d475af9291e4faee4930b324996c7a3c0696805",
+        signature="b9106148b9c6d445f6a5fe7bb54b552ac2ff639cb72e2af70f75659"
+        "04120dbb2040987c6cad559d7aa3b507c8d475af9291e4faee4930b"
+        "324996c7a3c0696805",
     )
 
     assert response == result
@@ -428,12 +430,14 @@ def test_success_post_invalid_block(requests_mock):
                     },
                 ],
             },
-            "signature": "ee5a2f2a2f5261c1b633e08dd61182fd0db5604c853ebd8498f6f28ce8e2ccbbc38093918610ea88a7ad47c7f3192ed955d9d1529e7e390013e43f25a5915c0f",
+            "signature": "ee5a2f2a2f5261c1b633e08dd61182fd0db5604c853ebd8498f6f28ce8e2ccbbc"
+            "38093918610ea88a7ad47c7f3192ed955d9d1529e7e390013e43f25a5915c0f",
         },
         block_identifier="65ae26192dfb9ec41f88c6d582b374a9b42ab58833e1612452d7a8f685dcd4d5",
         primary_validator_node_identifier="3afdf37573f1a511def0bd85553404b7091a76bcd79cdcebba1310527b167521",
         node_identifier="59479a31c3b91d96bb7a0b3e07f18d4bf301f1bb0bde05f8d36d9611dcbe7cbf",
-        signature="c61ef8067307f8a48979a656699709e415692eb7b7b0083e3cd41da4ff6cb388e7347896b5cacb0a74200390d228b30547f73a72029ebd4ed10482db5e925b0c",
+        signature="c61ef8067307f8a48979a656699709e415692eb7b7b0083e3cd41da4ff6cb388e7347896b5cacb0a74200390d"
+        "228b30547f73a72029ebd4ed10482db5e925b0c",
     )
 
     assert response == result
