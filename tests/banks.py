@@ -349,7 +349,9 @@ def test_success_patch_validator(requests_mock):
     response = bank.patch_validator(
         node_id="d5356888dc9303e44ce52b1e06c3165a7759b9df1e6a6dfbd33ee1c3df1ab4d1",
         trust=76.28,
-        signature="b9106148b9c6d445f6a5fe7bb54b552ac2ff639cb72e2af70f7565904120dbb2040987c6cad559d7aa3b507c8d475af9291e4faee4930b324996c7a3c0696805",
+        signature="b9106148b9c6d445f6a5fe7bb54b552ac2ff639cb72e2af70f75659"
+        "04120dbb2040987c6cad559d7aa3b507c8d475af9291e4faee4930b"
+        "324996c7a3c0696805",
     )
 
     assert response == result
