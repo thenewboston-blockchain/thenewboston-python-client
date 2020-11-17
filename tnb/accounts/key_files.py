@@ -23,7 +23,7 @@ def read_signing_key_file(file):
     Read signing key from file
     """
 
-    with open(file, 'rb') as f:
+    with open(file, "rb") as f:
         return SigningKey(f.read(), encoder=HexEncoder)
 
 
@@ -33,11 +33,10 @@ def write_signing_key_file(signing_key, file):
     """
 
     if not isinstance(signing_key, SigningKey):
-        raise RuntimeError(
-            'signing_key must be of type nacl.signing.SigningKey')
+        raise RuntimeError("signing_key must be of type nacl.signing.SigningKey")
 
     if path.exists(file):
-        raise RuntimeError(f'{file} already exists')
+        raise RuntimeError(f"{file} already exists")
 
-    with open(file, 'wb') as f:
+    with open(file, "wb") as f:
         f.write(signing_key.encode(encoder=HexEncoder))

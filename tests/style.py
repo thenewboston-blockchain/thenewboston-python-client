@@ -8,8 +8,10 @@ def test_style():
     W504 - Line break occurred after a binary operator
     """
 
-    style = pycodestyle.StyleGuide(ignore=['E501', 'W504'])
-    result = style.check_files([
-        'tests/',
-    ])
+    style = pycodestyle.StyleGuide(ignore=["E501", "W504"])
+    result = style.check_files(
+        [
+            "tests/",
+        ]
+    )
     assert not result.total_errors
