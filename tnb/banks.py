@@ -159,7 +159,6 @@ class Bank(BaseClient):
 
         return self.post('/connection_requests', body=body)
 
-    
     def post_block(self, account_number, balance_key, transactions, signature):
         """
         Send a block request to a Bank
@@ -171,7 +170,7 @@ class Bank(BaseClient):
 
         Return response as Python object
         """
-        
+
         body = {
             "account_number": account_number,
             "message": {
@@ -184,7 +183,8 @@ class Bank(BaseClient):
 
         return self.post("/blocks", body=body)
 
-    def post_invalid_block(self, block,block_identifier, primary_validator_node_identifier, node_identifier, signature):
+    def post_invalid_block(self, block, block_identifier, primary_validator_node_identifier, node_identifier,
+                           signature):
         """
         Post an invalid block to a Bank
 

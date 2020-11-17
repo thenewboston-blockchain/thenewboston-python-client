@@ -73,7 +73,6 @@ def test_success_fetch_invalid_blocks(requests_mock):
 
 
 def test_success_fetch_confirmations_blocks(requests_mock):
-
     blocks = [
         {
             "id": "e7c5c2e0-8ed1-4eb3-abd8-97fa2e5ca8db",
@@ -344,14 +343,10 @@ def test_success_fetch_blocks(requests_mock):
             "block_identifier": "65ae26192dfb9ec41f88c6d582b374a9b42ab58833e1612452d7a8f685dcd4d5",
             "block": "3ff4ebb0-2b3d-429b-ba90-08133fcdee4e",
             "confirmation_validator": "fcd2dce8-9e4f-4bf1-8dac-cdbaf64e5ce8",
-            "primary_validator": "51461a75-dd8d-4133-81f4-543a3b054149"
+            "primary_validator": "51461a75-dd8d-4133-81f4-543a3b054149",
         }
-
     ]
-    requests_mock.get(
-        "http://10.2.3.4:80/blocks",
-        json=result
-    )
+    requests_mock.get("http://10.2.3.4:80/blocks", json=result)
 
     bank = Bank(address="10.2.3.4")
     response = bank.fetch_blocks()
@@ -365,39 +360,36 @@ def test_success_post_block(requests_mock):
         "modified_date": "2020-07-09T21:45:25.909557Z",
         "balance_key": "ce51f0d9facaa7d3e69657429dd3f961ce70077a8efb53dcda508c7c0a19d2e3",
         "sender": "0cdd4ba04456ca169baca3d66eace869520c62fe84421329086e03d91a68acdb",
-        "signature": "ee5a2f2a2f5261c1b633e08dd61182fd0db5604c853ebd8498f6f28ce8e2ccbbc38093918610ea88a7ad47c7f3192ed955d9d1529e7e390013e43f25a5915c0f"
+        "signature": "ee5a2f2a2f5261c1b633e08dd61182fd0db5604c853ebd8498f6f28ce8e2ccbbc38093918610ea88a7ad47c7f3192ed955d9d1529e7e390013e43f25a5915c0f",
     }
 
-    requests_mock.post(
-        "http://10.2.3.4:80/blocks",
-        json=result
-    )
+    requests_mock.post("http://10.2.3.4:80/blocks", json=result)
 
     bank = Bank(address="10.2.3.4")
-    
+
     response = bank.post_block(
         account_number="0cdd4ba04456ca169baca3d66eace869520c62fe84421329086e03d91a68acdb",
         balance_key="ce51f0d9facaa7d3e69657429dd3f961ce70077a8efb53dcda508c7c0a19d2e3",
         transactions=[
             {
                 "amount": 12.5,
-                "recipient": "484b3176c63d5f37d808404af1a12c4b9649cd6f6769f35bdf5a816133623fbc"
+                "recipient": "484b3176c63d5f37d808404af1a12c4b9649cd6f6769f35bdf5a816133623fbc",
             },
             {
                 "amount": 1,
-                "recipient": "5e12967707909e62b2bb2036c209085a784fabbc3deccefee70052b6181c8ed8"
+                "recipient": "5e12967707909e62b2bb2036c209085a784fabbc3deccefee70052b6181c8ed8",
             },
             {
                 "amount": 4,
-                "recipient": "ad1f8845c6a1abb6011a2a434a079a087c460657aad54329a84b406dce8bf314"
-            }
+                "recipient": "ad1f8845c6a1abb6011a2a434a079a087c460657aad54329a84b406dce8bf314",
+            },
         ],
-        signature="ee5a2f2a2f5261c1b633e08dd61182fd0db5604c853ebd8498f6f28ce8e2ccbbc38093918610ea88a7ad47c7f3192ed955d9d1529e7e390013e43f25a5915c0f"
+        signature="ee5a2f2a2f5261c1b633e08dd61182fd0db5604c853ebd8498f6f28ce8e2ccbbc38093918610ea88a7ad47c7f3192ed955d9d1529e7e390013e43f25a5915c0f",
     )
 
     assert response == result
 
-    
+
 def test_success_post_invalid_block(requests_mock):
     result = {
         "id": "2bcd53c5-19f9-4226-ab04-3dfb17c3a1fe",
@@ -413,7 +405,9 @@ def test_success_post_invalid_block(requests_mock):
         "http://10.2.3.4:80/invalid_blocks",
         json=result,
     )
- 
+
+    bank = Bank(address="10.2.3.4")
+
     response = bank.post_invalid_block(
         block={
             "account_number": "0cdd4ba04456ca169baca3d66eace869520c62fe84421329086e03d91a68acdb",
@@ -441,6 +435,5 @@ def test_success_post_invalid_block(requests_mock):
         node_identifier="59479a31c3b91d96bb7a0b3e07f18d4bf301f1bb0bde05f8d36d9611dcbe7cbf",
         signature="c61ef8067307f8a48979a656699709e415692eb7b7b0083e3cd41da4ff6cb388e7347896b5cacb0a74200390d228b30547f73a72029ebd4ed10482db5e925b0c",
     )
-  
-    assert response == result
 
+    assert response == result
