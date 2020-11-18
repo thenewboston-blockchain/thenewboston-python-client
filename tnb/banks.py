@@ -189,7 +189,7 @@ class Bank(BaseClient):
         block_identifier,
         primary_validator_node_identifier,
         node_identifier,
-        signature
+        signature,
     ):
         """
         Post an invalid block to a Bank
@@ -259,7 +259,7 @@ class Bank(BaseClient):
                 "balance_key": balance_key,
                 "txs": transactions,
             },
-            "signature": signature
+            "signature": signature,
 
         }
 
