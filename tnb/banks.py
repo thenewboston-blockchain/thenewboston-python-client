@@ -37,7 +37,39 @@ class Bank(BaseClient):
         """
         return self.fetch("/validators")
 
+    def fetch_validator_confirmation_services(self) -> object:
+        """
+        Get validators confirmation services from a Bank
+
+        Return response as list
+        """
+        return self.fetch("/validator_confirmation_services")
+
+    def create_validator_confirmation_service(
+        self, msg_end, msg_start, node_id, signature
+    ):
+        """
+        Get validators confirmation services from a Bank
+
+        :param msg_end: ISO 8601 string that represents the end datetime
+            of message
+        :param msg_start: ISO 8601 string that represents the start datetime
+            of message
+        :param node_id: The Node Identifier of the Bank
+        :param signature: The signature is signed by Bank's Node Identifier
+            Signing Key
+
+        Return response as dict
+        """
+        body = {
+            "message": {"end": msg_end, "start": msg_start},
+            "node_identifier": node_id,
+            "signature": signature,
+        }
+        return self.post("/validator_confirmation_services", body=body)
+
     def fetch_banks(self) -> object:
+
         """
         Get banks from current bank.
         Return response as a Python object
@@ -186,3 +218,22 @@ class Bank(BaseClient):
         }
 
         return self.post("/invalid_blocks", body=body)
+
+    def post_upgrade_notice(self, bank_node_identifier, node_identifier, signature):
+        """
+        Post an upgrade notice to a bank and get the result status code
+
+        :param bank_node_identifier: Node identifier of bank receiving the request
+
+        :param node_identifier: Node identifier of Validator sending the request
+        :param signature: Signature of the message
+
+        Return response as Python object
+        """
+        message = {"bank_node_identifier": bank_node_identifier}
+        body = {
+            "message": message,
+            "node_identifier": node_identifier,
+            "signature": signature,
+        }
+        return self.post("/upgrade_notice", body=body)
