@@ -223,7 +223,7 @@ class Bank(BaseClient):
         :param node_identifier: Node identifier of Validator sending the request
         :param signature: Signature of the message
 
-        Return a tuple (status_code, json_response)
+        Return response as Python object
         """
         message = {"bank_node_identifier": bank_node_identifier}
         body = {
