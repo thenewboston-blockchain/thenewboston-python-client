@@ -16,13 +16,6 @@ class Bank(BaseClient):
         """
         return self.fetch("/bank_transactions")
 
-    def fetch_blocks(self):
-        """
-        Get blocks from a Bank
-        Return response as Python object
-        """
-        return self.fetch('/blocks')
-
     def fetch_invalid_blocks(self):
         """
         Get invalid block from a Bank
@@ -214,8 +207,14 @@ class Bank(BaseClient):
 
         return self.post("/blocks", body=body)
 
-    def post_invalid_block(self, block, block_identifier, primary_validator_node_identifier, node_identifier,
-                           signature):
+    def post_invalid_block(
+            self,
+            block,
+            block_identifier,
+            primary_validator_node_identifier,
+            node_identifier,
+            signature
+    ):
         """
         Post an invalid block to a Bank
 
@@ -239,3 +238,10 @@ class Bank(BaseClient):
         }
 
         return self.post("/invalid_blocks", body=body)
+
+    def fetch_blocks(self):
+        """
+        Get blocks from a Bank
+        Return response as Python object
+        """
+        return self.fetch("/blocks")
