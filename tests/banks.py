@@ -417,7 +417,8 @@ def test_success_post_block(requests_mock):
         "modified_date": "2020-07-09T21:45:25.909557Z",
         "balance_key": "ce51f0d9facaa7d3e69657429dd3f961ce70077a8efb53dcda508c7c0a19d2e3",
         "sender": "0cdd4ba04456ca169baca3d66eace869520c62fe84421329086e03d91a68acdb",
-        "signature": "ee5a2f2a2f5261c1b633e08dd61182fd0db5604c853ebd8498f6f28ce8e2ccbbc38093918610ea88a7ad47c7f3192ed955d9d1529e7e390013e43f25a5915c0f",
+        "signature": "ee5a2f2a2f5261c1b633e08dd61182fd0db5604c853ebd8498f6f28ce8e2ccbbc38093918610ea88a7ad47c7f3192ed95"
+        "5d9d1529e7e390013e43f25a5915c0f",
     }
 
     requests_mock.post("http://10.2.3.4:80/blocks", json=result)
@@ -441,7 +442,8 @@ def test_success_post_block(requests_mock):
                 "recipient": "ad1f8845c6a1abb6011a2a434a079a087c460657aad54329a84b406dce8bf314",
             },
         ],
-        signature="ee5a2f2a2f5261c1b633e08dd61182fd0db5604c853ebd8498f6f28ce8e2ccbbc38093918610ea88a7ad47c7f3192ed955d9d1529e7e390013e43f25a5915c0f",
+        signature="ee5a2f2a2f5261c1b633e08dd61182fd0db5604c853ebd8498f6f28ce8e2ccbbc38093918610ea88a7ad47c7f3192ed955d9"
+        "d1529e7e390013e43f25a5915c0f",
     )
 
     assert response == result
