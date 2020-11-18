@@ -2,42 +2,42 @@ from tnb.base_client import BaseClient
 
 
 class Bank(BaseClient):
-    def fetch_accounts(self):
+    def fetch_accounts(self) -> object:
         """
         Fetch accounts from a Bank
         Return response as Python object
         """
         return self.fetch("/accounts")
 
-    def fetch_bank_transactions(self):
+    def fetch_bank_transactions(self) -> object:
         """
         Get transactions from a Bank
         Return response as Python object
         """
         return self.fetch("/bank_transactions")
 
-    def fetch_invalid_blocks(self):
+    def fetch_invalid_blocks(self) -> object:
         """
         Get invalid block from a Bank
         Return response as Python object
         """
         return self.fetch("/invalid_blocks")
 
-    def fetch_confirmation_blocks(self):
+    def fetch_confirmation_blocks(self) -> object:
         """
         Get confirmation blocks from a Bank
         Return response as Python object
         """
         return self.fetch_multiple_page("/confirmation_blocks")
 
-    def fetch_validators(self):
+    def fetch_validators(self) -> object:
         """
         Get validators from a Bank
         Return response as Python object
         """
         return self.fetch("/validators")
 
-    def fetch_banks(self):
+    def fetch_banks(self) -> object:
         """
         Get banks from current bank.
         Return response as a Python object
@@ -45,14 +45,16 @@ class Bank(BaseClient):
 
         return self.fetch("/banks")
 
-    def fetch_config(self):
+    def fetch_config(self) -> object:
         """
         Get config from a Bank
         Return response as Python object
         """
         return self.fetch("/config")
 
-    def patch_trust_level(self, trust, node_identifier, signature):
+    def patch_trust_level(
+        self, trust: float, node_identifier: str, signature: str
+    ) -> object:
         """
         Set bank trust level
         :param trust: Trust value as a float
@@ -69,7 +71,9 @@ class Bank(BaseClient):
 
         return self.patch(resource, body=body)
 
-    def patch_account(self, account_number, node_id, trust, signature):
+    def patch_account(
+        self, account_number: str, node_id: str, trust: float, signature: str
+    ) -> object:
         """
         Send a PATCH request of an account to a Bank
 
@@ -90,7 +94,7 @@ class Bank(BaseClient):
 
         return self.patch(resource, body=body)
 
-    def patch_validator(self, node_id, trust, signature):
+    def patch_validator(self, node_id: str, trust: float, signature: str) -> object:
         """
         Send a PATCH request of a validator to a Bank
 
@@ -111,7 +115,7 @@ class Bank(BaseClient):
 
         return self.patch(resource, body=body)
 
-    def send_confirmation_block(self, message, node_id, signature):
+    def send_confirmation_block(self, message, node_id: str, signature: str) -> object:
         """
         Send a confirmation block to a Bank.
 
@@ -130,7 +134,7 @@ class Bank(BaseClient):
 
         return self.post("/confirmation_blocks", body=body)
 
-    def connection_requests(self, node_id, signature):
+    def connection_requests(self, node_id: str, signature: str) -> object:
         """
         Send a connection request to a Bank
 
@@ -154,12 +158,12 @@ class Bank(BaseClient):
 
     def post_invalid_block(
         self,
-        block,
-        block_identifier,
-        primary_validator_node_identifier,
-        node_identifier,
-        signature,
-    ):
+        block: dict,
+        block_identifier: str,
+        primary_validator_node_identifier: str,
+        node_identifier: str,
+        signature: str,
+    ) -> object:
         """
         Post an invalid block to a Bank
 

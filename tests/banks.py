@@ -73,7 +73,6 @@ def test_success_fetch_invalid_blocks(requests_mock):
 
 
 def test_success_fetch_confirmations_blocks(requests_mock):
-
     blocks = [
         {
             "id": "e7c5c2e0-8ed1-4eb3-abd8-97fa2e5ca8db",

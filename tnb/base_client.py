@@ -8,13 +8,13 @@ class BaseClient(object):
     Common class for sending request to server
     """
 
-    def __init__(self, *, address, protocol="http", port=80):
+    def __init__(self, *, address: str, protocol="http", port=80):
         self.address = address
         self.protocol = protocol
         self.port = port
         self.base_url = f"{protocol}://{address}:{port}/"
 
-    def send_request(self, method, resource, **kwargs):
+    def send_request(self, method: str, resource: str, **kwargs: object) -> object:
         """
         Fetch `resource` from a Node
         Return response as Python object
@@ -25,7 +25,7 @@ class BaseClient(object):
 
         return response.json()
 
-    def send_request_from_url(self, method, url, **kwargs):
+    def send_request_from_url(self, method: str, url: str, **kwargs: object) -> object:
         """
         Fetch a ressource from a Node given a specific URL
         Return response as Python object
@@ -35,14 +35,14 @@ class BaseClient(object):
 
         return response.json()
 
-    def fetch(self, resource, **kwargs):
+    def fetch(self, resource: str, **kwargs: object) -> object:
         """
         GET a `resource` from a Node
         Return response as Python object
         """
         return self.send_request("GET", resource, **kwargs)
 
-    def fetch_multiple_page(self, resource, **kwargs):
+    def fetch_multiple_page(self, resource: str, **kwargs) -> object:
         """
         GET a complete `resource` from a Node where this resource is splited into
         multiple pages.
@@ -62,28 +62,28 @@ class BaseClient(object):
 
         return complete_response
 
-    def delete(self, resource, **kwargs):
+    def delete(self, resource: str, **kwargs: object) -> object:
         """
         DELETE a `resource` from a Node
         Return response as Python object
         """
         return self.send_request("DELETE", resource, **kwargs)
 
-    def patch(self, resource, body, **kwargs):
+    def patch(self, resource: str, body: dict, **kwargs: object) -> object:
         """
         PATCH a `resource` to a Node
         Return response as Python object
         """
         return self.send_request("PATCH", resource, json=body, **kwargs)
 
-    def post(self, resource, body, **kwargs):
+    def post(self, resource: str, body: dict, **kwargs: object) -> object:
         """
         POST a `resource` to a Node
         Return response as Python object
         """
         return self.send_request("POST", resource, json=body, **kwargs)
 
-    def put(self, resource, body, **kwargs):
+    def put(self, resource: str, body: dict, **kwargs: object) -> object:
         """
         PUT a `resource` to a Node
         Return response as Python object
