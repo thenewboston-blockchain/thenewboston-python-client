@@ -181,7 +181,7 @@ class Bank(BaseClient):
             "signature": signature,
         }
 
-        return self.post('/connection_requests', body=body)
+        return self.post("/connection_requests", body=body)
 
     def post_block(self, account_number, balance_key, transactions, signature):
         """
