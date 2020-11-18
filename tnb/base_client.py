@@ -44,8 +44,8 @@ class BaseClient(object):
 
     def fetch_multiple_page(self, resource, **kwargs):
         """
-        GET a complete `resource` from a Node where this resource is splited into
-        multiple pages.
+        GET a complete `resource` from a Node where this resource is splited
+        into multiple pages.
         Return response as Python object
         """
         complete_response = []

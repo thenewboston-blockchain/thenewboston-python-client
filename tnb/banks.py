@@ -196,8 +196,10 @@ class Bank(BaseClient):
 
         :param block: The invalid block
         :param block_identifier: ID for the block
-        :param primary_validator_node_identifier: Primary Validator's Node Identifier
-        :param node_identifier: Node Identifier of Confirmation Validator sending the request
+        :param primary_validator_node_identifier: Primary Validator's Node
+        Identifier
+        :param node_identifier: Node Identifier of Confirmation Validator
+        sending the request
         :param signature: Hex value of the signed message
 
         Return response as Python object
@@ -206,7 +208,8 @@ class Bank(BaseClient):
             "message": {
                 "block": block,
                 "block_identifier": block_identifier,
-                "primary_validator_node_identifier": primary_validator_node_identifier,
+                "primary_validator_node_identifier":
+                primary_validator_node_identifier,
             },
             "node_identifier": node_identifier,
             "signature": signature,
