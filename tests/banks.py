@@ -498,3 +498,21 @@ def test_success_post_invalid_block(requests_mock):
     )
 
     assert response == result
+
+
+def test_success_post_upgrade_notice(requests_mock):
+    result = [200, {}]
+
+    requests_mock.post(
+        "http://10.2.3.4:80/upgrade_notice",
+        json=result,
+        status_code=200,
+    )
+
+    bank = Bank(address="10.2.3.4")
+    bank_nid = "banknodeidentifier1234"
+    node_id = "validatoridentifier1234"
+    signature = "signature"
+    response = bank.post_upgrade_notice(bank_nid, node_id, signature)
+
+    assert response == result
