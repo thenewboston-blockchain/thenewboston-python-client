@@ -215,27 +215,39 @@ def test_success_create_validator_confirmation_service(requests_mock):
 
 
 def test_success_fetch_validators(requests_mock):
-    result = [
+    validators = [
         {
-            "account_number": "ad1f8845c6a1abb6011a2a434a079a087c460657aad543",
-            "ip_address": "192.168.1.74",
-            "node_identifier": "3afdf37573f1a511def0bd85553404b7091a76bcd79cd",
-            "port": 8000,
+            "account_number": "2e86f48216567302527b69eae6c6a188097ed3a9741f43cc3723e570cf47644c",
+            "ip_address": "54.183.17.224",
+            "node_identifier": "2262026a562b0274163158e92e8fbc4d28e519bc5ba8c1cf403703292be84a51",
+            "port": None,
             "protocol": "http",
             "version": "v1.0",
-            "default_transaction_fee": "4.0000000000000000",
-            "root_account_file": (
-                "https://gist.githubusercontent.com/"
-                "buckyroberts/519b5cb82a0a5b5d4ae8a2175b7"
-                "520/raw/9237deb449e27cab93cb89ea3346ecdf1"
-                "fe9ea/0.json"
-            ),
-            "root_account_file_hash": "4694e1ee1dcfd8ee5f989e59ae40a9f75181f",
+            "default_transaction_fee": 1,
+            "root_account_file": "https://gist.githubusercontent.com/"
+            "buckyroberts/0688f136b6c1332be472a8baf10f78c5/raw/323fcd29672e392be2b934b82ab9eac8d15e840f/alpha-00.json",
+            "root_account_file_hash": "0f775023bee79884fbd9a90a76c5eacfee38a8ca52735f7ab59dab63a75cbee1",
             "seed_block_identifier": "",
             "daily_confirmation_rate": None,
             "trust": "100.00",
-        }
+        },
+        {
+            "account_number": "4699a423c455a40feb1d6b90b167584a880659e1bf9adf9954a727d534ff0c16",
+            "ip_address": "54.219.178.46",
+            "node_identifier": "b1b232503b3db3975524faf98674f22c83f4357c3d946431b8a8568715d7e1d9",
+            "port": None,
+            "protocol": "http",
+            "version": "v1.0",
+            "default_transaction_fee": 1,
+            "root_account_file": "http://54.219.178.46/media/root_account_file.json",
+            "root_account_file_hash": "cc9390cc579dc8a99a1f34c1bea5d54a0f45b27ecee7e38662f0cd853f76744d",
+            "seed_block_identifier": "",
+            "daily_confirmation_rate": 1,
+            "trust": "98.00",
+        },
     ]
+    result = {"count": 2, "next": None, "previous": None, "results": validators}
+
     requests_mock.get(
         "http://10.2.3.4:80/validators",
         json=result,
