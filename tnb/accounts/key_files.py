@@ -2,11 +2,12 @@ from os import path
 
 from nacl.encoding import HexEncoder
 from nacl.signing import SigningKey
+from typing import Tuple
 
 from tnb.accounts.manage import create_account
 
 
-def create_account_and_save_signing_key_file(file):
+def create_account_and_save_signing_key_file(file: str) -> Tuple[str, str]:
     """
     Create a new account
     Save signing key to file
@@ -18,7 +19,7 @@ def create_account_and_save_signing_key_file(file):
     return signing_key, account_number
 
 
-def read_signing_key_file(file):
+def read_signing_key_file(file: str) -> SigningKey:
     """
     Read signing key from file
     """
@@ -27,7 +28,7 @@ def read_signing_key_file(file):
         return SigningKey(f.read(), encoder=HexEncoder)
 
 
-def write_signing_key_file(signing_key, file):
+def write_signing_key_file(signing_key: str, file: str):
     """
     Save signing key to file
     """

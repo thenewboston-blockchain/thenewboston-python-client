@@ -2,42 +2,42 @@ from tnb.base_client import BaseClient
 
 
 class Bank(BaseClient):
-    def fetch_accounts(self):
+    def fetch_accounts(self) -> list:
         """
         Fetch accounts from a Bank
         Return response as Python object
         """
         return self.fetch("/accounts")
 
-    def fetch_bank_transactions(self):
+    def fetch_bank_transactions(self) -> list:
         """
         Get transactions from a Bank
         Return response as Python object
         """
         return self.fetch("/bank_transactions")
 
-    def fetch_invalid_blocks(self):
+    def fetch_invalid_blocks(self) -> list:
         """
         Get invalid block from a Bank
         Return response as Python object
         """
         return self.fetch("/invalid_blocks")
 
-    def fetch_confirmation_blocks(self):
+    def fetch_confirmation_blocks(self) -> list:
         """
         Get confirmation blocks from a Bank
         Return response as Python object
         """
         return self.fetch("/confirmation_blocks")
 
-    def fetch_validators(self):
+    def fetch_validators(self) -> list:
         """
         Get validators from a Bank
         Return response as Python object
         """
         return self.fetch("/validators")
 
-    def fetch_validator_confirmation_services(self):
+    def fetch_validator_confirmation_services(self) -> list:
         """
         Get validators confirmation services from a Bank
 
@@ -46,8 +46,8 @@ class Bank(BaseClient):
         return self.fetch("/validator_confirmation_services")
 
     def create_validator_confirmation_service(
-        self, msg_end, msg_start, node_id, signature
-    ):
+        self, msg_end: str, msg_start: str, node_id: str, signature
+    ) -> dict:
         """
         Create validators confirmation services from a Bank
 
@@ -68,7 +68,7 @@ class Bank(BaseClient):
         }
         return self.post("/validator_confirmation_services", body=body)
 
-    def fetch_banks(self):
+    def fetch_banks(self) -> dict:
         """
         Get banks from current bank.
         Return response as a Python object
@@ -76,14 +76,16 @@ class Bank(BaseClient):
 
         return self.fetch("/banks")
 
-    def fetch_config(self):
+    def fetch_config(self) -> dict:
         """
         Get config from a Bank
         Return response as Python object
         """
         return self.fetch("/config")
 
-    def patch_trust_level(self, trust, node_identifier, signature):
+    def patch_trust_level(
+        self, trust: float, node_identifier: str, signature: str
+    ) -> dict:
         """
         Set bank trust level
         :param trust: Trust value as a float
@@ -100,7 +102,9 @@ class Bank(BaseClient):
 
         return self.patch(resource, body=body)
 
-    def patch_account(self, account_number, node_id, trust, signature):
+    def patch_account(
+        self, account_number: str, node_id: str, trust: float, signature: str
+    ) -> dict:
         """
         Send a PATCH request of an account to a Bank
 
@@ -121,7 +125,7 @@ class Bank(BaseClient):
 
         return self.patch(resource, body=body)
 
-    def patch_validator(self, node_id, trust, signature):
+    def patch_validator(self, node_id: str, trust: float, signature: str) -> dict:
         """
         Send a PATCH request of a validator to a Bank
 
@@ -142,7 +146,7 @@ class Bank(BaseClient):
 
         return self.patch(resource, body=body)
 
-    def send_confirmation_block(self, message, node_id, signature):
+    def send_confirmation_block(self, message, node_id: str, signature: str) -> list:
         """
         Send a confirmation block to a Bank.
 
@@ -161,7 +165,7 @@ class Bank(BaseClient):
 
         return self.post("/confirmation_blocks", body=body)
 
-    def connection_requests(self, node_id, signature):
+    def connection_requests(self, node_id: str, signature: str) -> list:
         """
         Send a connection request to a Bank
 
@@ -185,12 +189,12 @@ class Bank(BaseClient):
 
     def post_invalid_block(
         self,
-        block,
-        block_identifier,
-        primary_validator_node_identifier,
-        node_identifier,
-        signature,
-    ):
+        block: dict,
+        block_identifier: str,
+        primary_validator_node_identifier: str,
+        node_identifier: str,
+        signature: str,
+    ) -> dict:
         """
         Post an invalid block to a Bank
 
@@ -215,7 +219,9 @@ class Bank(BaseClient):
 
         return self.post("/invalid_blocks", body=body)
 
-    def post_upgrade_notice(self, bank_node_identifier, node_identifier, signature):
+    def post_upgrade_notice(
+        self, bank_node_identifier: str, node_identifier: str, signature: str
+    ) -> dict:
         """
         Post an upgrade notice to a bank and get the result status code
 
