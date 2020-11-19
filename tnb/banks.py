@@ -202,6 +202,7 @@ class Bank(BaseClient):
 
         Return response as Python object
         """
+
         body = {
             "message": {
                 "block": block,
@@ -232,3 +233,33 @@ class Bank(BaseClient):
             "signature": signature,
         }
         return self.post("/upgrade_notice", body=body)
+
+    def fetch_blocks(self):
+        """
+        Get blocks from a Bank
+        Return response as Python object
+        """
+        return self.fetch("/blocks")
+
+    def post_block(self, account_number, balance_key, transactions, signature):
+        """
+        Send a block request to a Bank
+
+        :param account_number: The sender's account number
+        :param balance_key: The balance_key matching the sending accounts balance_lock
+        :param transactions: A list of transactions
+        :param signature: Hex value of the signed message
+
+        Return response as Python object
+        """
+
+        body = {
+            "account_number": account_number,
+            "message": {
+                "balance_key": balance_key,
+                "txs": transactions,
+            },
+            "signature": signature,
+        }
+
+        return self.post("/blocks", body=body)
