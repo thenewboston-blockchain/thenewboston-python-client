@@ -22,7 +22,7 @@ def test_success_fetch_accounts(requests_mock):
 
     result = {
         "count": 2,
-        "next": "http://10.2.3.4:80/accounts?limit=50&offset=50",
+        "next": None,
         "previous": None,
         "results": accounts,
     }
@@ -71,7 +71,7 @@ def test_success_fetch_bank_transactions(requests_mock):
 
     result = {
         "count": 2,
-        "next": "http://10.2.3.4:80/bank_transactions?limit=50&offset=50",
+        "next": None,
         "previous": None,
         "results": bank_transactions,
     }
