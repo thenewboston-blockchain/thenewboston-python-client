@@ -240,14 +240,14 @@ class Bank(BaseClient):
         }
         return self.post("/upgrade_notice", body=body)
 
-    def fetch_blocks(self):
+    def fetch_blocks(self) -> dict:
         """
         Get blocks from a Bank
         Return response as Python object
         """
         return self.fetch("/blocks")
 
-    def post_block(self, account_number, balance_key, transactions, signature):
+    def post_block(self, account_number, balance_key, transactions, signature) -> dict:
         """
         Send a block request to a Bank
 
