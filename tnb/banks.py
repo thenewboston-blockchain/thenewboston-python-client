@@ -28,7 +28,7 @@ class Bank(BaseClient):
         Get confirmation blocks from a Bank
         Return response as Python object
         """
-        return self.fetch_multiple_page("/confirmation_blocks")
+        return self.fetch("/confirmation_blocks")
 
     def fetch_validators(self):
         """

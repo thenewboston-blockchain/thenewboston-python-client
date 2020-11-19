@@ -128,35 +128,21 @@ def test_success_fetch_confirmations_blocks(requests_mock):
         },
     ]
 
-    result_page1 = {
-        "count": 2,
-        "next": "http://10.2.3.4:80/confirmation_blocks?limit=50&offset=1",
-        "previous": None,
-        "results": [
-            blocks[0],
-        ],
-    }
-
-    result_page2 = {
+    result = {
         "count": 2,
         "next": None,
-        "previous": "http://10.2.3.4:80/confirmation_blocks",
-        "results": [
-            blocks[1],
-        ],
+        "previous": None,
+        "results": blocks,
     }
+
     requests_mock.get(
         "http://10.2.3.4:80/confirmation_blocks",
-        json=result_page1,
-    )
-    requests_mock.get(
-        "http://10.2.3.4:80/confirmation_blocks?limit=50&offset=1",
-        json=result_page2,
+        json=result,
     )
 
     bank = Bank(address="10.2.3.4")
     response = bank.fetch_confirmation_blocks()
-    assert response == blocks
+    assert response == result
 
 
 def test_success_fetch_validator_confirmation_services(requests_mock):
