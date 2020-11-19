@@ -2,15 +2,30 @@ from tnb.banks import Bank
 
 
 def test_success_fetch_accounts(requests_mock):
-    result = [
+
+    accounts = [
         {
-            "id": "9eca00a5-d925-454c-a8d6-ecbb26ec2f76",
-            "created_date": "2020-07-08T02:14:59.307535Z",
-            "modified_date": "2020-07-08T02:14:59.307553Z",
-            "account_number": "4d2ec91f37bc553bc538e91195669b666e26b2ea3e4e31507e",
-            "trust": "75.21",
-        }
+            "id": "5a8c7990-393a-4299-ae92-2f096a2c7f43",
+            "created_date": "2020-10-08T02:18:07.346849Z",
+            "modified_date": "2020-10-08T02:18:07.346914Z",
+            "account_number": "a37e2836805975f334108b55523634c995bd2a4db610062f404510617e83126f",
+            "trust": "0.00",
+        },
+        {
+            "id": "2682963f-06b1-47d7-a2e1-1f8ec6ae98dc",
+            "created_date": "2020-10-08T02:39:44.071810Z",
+            "modified_date": "2020-10-08T02:39:44.071853Z",
+            "account_number": "cc8fb4ebbd2b9a98a767e801ac2b0d296ced88b5d3b7d6d6e12e1d2d7635d724",
+            "trust": "0.00",
+        },
     ]
+
+    result = {
+        "count": 2,
+        "next": "http://10.2.3.4:80/accounts?limit=50&offset=50",
+        "previous": None,
+        "results": accounts,
+    }
 
     requests_mock.get(
         "http://10.2.3.4:80/accounts",
@@ -38,6 +53,7 @@ def test_success_fetch_bank_transactions(requests_mock):
             "recipient": "484b3176c63d5f37d808404af1a12c4b9649cd6f6769f35bdf5",
         }
     ]
+
     requests_mock.get(
         "http://10.2.3.4:80/bank_transactions",
         json=result,
