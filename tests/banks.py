@@ -160,24 +160,31 @@ def test_success_fetch_confirmations_blocks(requests_mock):
 
 
 def test_success_fetch_validator_confirmation_services(requests_mock):
-    result = [
+    confirmation_services = [
         {
-            "id": "be9fbc3b-d4df-43d5-9bea-9882a6dd27f6",
-            "created_date": "2020-07-09T22:10:35.312956Z",
-            "modified_date": "2020-07-09T22:10:37.393578Z",
-            "end": "2020-08-09T22:10:24Z",
-            "start": "2020-07-09T22:10:25Z",
-            "validator": "51461a75-dd8d-4133-81f4-543a3b054149",
+            "id": "5634f7d5-fa93-40c4-8e53-472055f1aa1c",
+            "created_date": "2020-09-24T22:15:09.375150Z",
+            "modified_date": "2020-09-24T22:15:09.375197Z",
+            "end": "2021-01-27T22:15:09.343282Z",
+            "start": "2020-09-24T22:15:09.343282Z",
+            "validator": "e2a138b0-ebe9-47d2-a146-fb4d9d9ca378",
         },
         {
-            "id": "e2055637-67ff-4479-aec6-a8095d513862",
-            "created_date": "2020-07-09T22:10:35.312956Z",
-            "modified_date": "2020-07-09T22:10:37.393578Z",
-            "end": "2020-08-09T22:10:24Z",
-            "start": "2020-07-09T22:10:25Z",
-            "validator": "10308b02-d577-484e-953c-0a2bdb5e3d83",
+            "id": "817a91bc-9dca-44d2-92ea-55547660e60e",
+            "created_date": "2020-09-24T22:15:30.057923Z",
+            "modified_date": "2020-09-24T22:15:30.057980Z",
+            "end": "2020-11-30T14:15:29.982900Z",
+            "start": "2020-09-24T22:15:29.982900Z",
+            "validator": "97a878ac-328a-47b6-ac93-be6deee75d94",
         },
     ]
+    result = {
+        "count": 2,
+        "next": None,
+        "previous": None,
+        "results": confirmation_services,
+    }
+
     requests_mock.get(
         "http://10.2.3.4:80/validator_confirmation_services",
         json=result,
