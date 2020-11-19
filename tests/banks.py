@@ -38,21 +38,43 @@ def test_success_fetch_accounts(requests_mock):
 
 
 def test_success_fetch_bank_transactions(requests_mock):
-    result = [
+    bank_transactions = [
         {
-            "id": "a85a4692-e03d-4419-8b25-813598b367bd",
+            "id": "8d422974-7ca2-4386-a2aa-26ac0cab00b8",
             "block": {
-                "id": "e00c5522-1b73-4a46-bd03-629d446eec19",
-                "created_date": "2020-07-14T03:14:36.436771Z",
-                "modified_date": "2020-07-14T03:14:36.436796Z",
-                "balance_key": "efa253d24ee516fe5ed45bb4e47a3146026e97f766df1",
-                "sender": "0cdd4ba04456ca169baca3d66eace869520c62fe8442132908",
-                "signature": "a1bbd321ad6d3f74f027de5a2c19457779fe1466708c2ea",
+                "id": "370b5e8c-03ed-4d72-b649-940e1ec82fca",
+                "created_date": "2020-11-19T17:55:22.188130Z",
+                "modified_date": "2020-11-19T17:55:22.188176Z",
+                "balance_key": "0c10b6bd8f6effc2ed5ffc927363f73ebb81b3f086805d7d57bea416fc9796c6",
+                "sender": "0d304450eae6b5094240cc58b008066316d9f641878d9af9dd70885f065913a0",
+                "signature": "743bc0bfcc8db0cd0b736e5cbaf0c5fd1866fd73e805e58cdb2afd3a19"
+                "8d53636a5d9d4560ec047a8c8e221da29a0f7b1b20f3bf879e7bb7c281f0890b413e02",
             },
-            "amount": "12.5000000000000000",
-            "recipient": "484b3176c63d5f37d808404af1a12c4b9649cd6f6769f35bdf5",
-        }
+            "amount": 1,
+            "recipient": "2e86f48216567302527b69eae6c6a188097ed3a9741f43cc3723e570cf47644c",
+        },
+        {
+            "id": "e98c8ce2-d89e-4b72-8e90-61f431a83dd1",
+            "block": {
+                "id": "370b5e8c-03ed-4d72-b649-940e1ec82fca",
+                "created_date": "2020-11-19T17:55:22.188130Z",
+                "modified_date": "2020-11-19T17:55:22.188176Z",
+                "balance_key": "0c10b6bd8f6effc2ed5ffc927363f73ebb81b3f086805d7d57bea416fc9796c6",
+                "sender": "0d304450eae6b5094240cc58b008066316d9f641878d9af9dd70885f065913a0",
+                "signature": "743bc0bfcc8db0cd0b736e5cbaf0c5fd1866fd73e805e58cdb2afd3a19"
+                "8d53636a5d9d4560ec047a8c8e221da29a0f7b1b20f3bf879e7bb7c281f0890b413e02",
+            },
+            "amount": 19600,
+            "recipient": "82ad4b185c2ac04440c8f1c54854819ac2ea374255e8fecc54a6f28d4fcc4814",
+        },
     ]
+
+    result = {
+        "count": 2,
+        "next": "http://10.2.3.4:80/bank_transactions?limit=50&offset=50",
+        "previous": None,
+        "results": bank_transactions,
+    }
 
     requests_mock.get(
         "http://10.2.3.4:80/bank_transactions",
