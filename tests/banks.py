@@ -205,6 +205,7 @@ def test_success_create_validator_confirmation_service(requests_mock):
         "start": "2020-08-09T22:10:25Z",
         "validator": "fcd2dce8-9e4f-4bf1-8dac-cdbaf64e5ce8",
     }
+    
     requests_mock.post(
         "http://10.2.3.4:80/validator_confirmation_services",
         json=result,

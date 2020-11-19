@@ -49,7 +49,7 @@ class Bank(BaseClient):
         self, msg_end, msg_start, node_id, signature
     ):
         """
-        Get validators confirmation services from a Bank
+        Create validators confirmation services from a Bank
 
         :param msg_end: ISO 8601 string that represents the end datetime
             of message
