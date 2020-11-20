@@ -2,13 +2,13 @@ from tnb.base_client import BaseClient
 
 
 class Validator(BaseClient):
-    def fetch_accounts(self) -> dict:
+    def fetch_accounts(self, page: int = 1, limit: int = 50) -> dict:
         """
         Fetch accounts from validator
         Return response as a Python object
         """
-
-        return self.fetch("/accounts")
+        kwargs = {'page': page, 'limit': limit}
+        return self.fetch("/accounts", **kwargs)
 
     def fetch_account_balance(self, account_number: str) -> dict:
         """

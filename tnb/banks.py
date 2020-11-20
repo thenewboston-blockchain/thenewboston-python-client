@@ -2,48 +2,54 @@ from tnb.base_client import BaseClient
 
 
 class Bank(BaseClient):
-    def fetch_accounts(self) -> dict:
+    def fetch_accounts(self, page: int = 1, limit: int = 50) -> dict:
         """
         Fetch accounts from a Bank
         Return response as Python object
         """
-        return self.fetch("/accounts")
+        kwargs = {'page': page, 'limit': limit}
+        return self.fetch("/accounts", **kwargs)
 
-    def fetch_bank_transactions(self) -> dict:
+    def fetch_bank_transactions(self, page: int = 1, limit: int = 50) -> dict:
         """
         Get transactions from a Bank
         Return response as Python object
         """
-        return self.fetch("/bank_transactions")
+        kwargs = {'page': page, 'limit': limit}
+        return self.fetch("/bank_transactions", **kwargs)
 
-    def fetch_invalid_blocks(self) -> dict:
+    def fetch_invalid_blocks(self, page: int = 1, limit: int = 50) -> dict:
         """
         Get invalid block from a Bank
         Return response as Python object
         """
-        return self.fetch("/invalid_blocks")
+        kwargs = {'page': page, 'limit': limit}
+        return self.fetch("/invalid_blocks", **kwargs)
 
-    def fetch_confirmation_blocks(self) -> dict:
+    def fetch_confirmation_blocks(self, page: int = 1, limit: int = 50) -> dict:
         """
         Get confirmation blocks from a Bank
         Return response as Python object
         """
-        return self.fetch("/confirmation_blocks")
+        kwargs = {'page': page, 'limit': limit}
+        return self.fetch("/confirmation_blocks", **kwargs)
 
-    def fetch_validators(self) -> dict:
+    def fetch_validators(self, page: int = 1, limit: int = 50) -> dict:
         """
         Get validators from a Bank
         Return response as Python object
         """
-        return self.fetch("/validators")
+        kwargs = {'page': page, 'limit': limit}
+        return self.fetch("/validators", **kwargs)
 
-    def fetch_validator_confirmation_services(self) -> dict:
+    def fetch_validator_confirmation_services(self, page: int = 1, limit: int = 50) -> dict:
         """
         Get validators confirmation services from a Bank
 
         Return response as list
         """
-        return self.fetch("/validator_confirmation_services")
+        kwargs = {'page': page, 'limit': limit}
+        return self.fetch("/validator_confirmation_services", **kwargs)
 
     def create_validator_confirmation_service(
         self, msg_end: str, msg_start: str, node_id: str, signature
@@ -68,13 +74,13 @@ class Bank(BaseClient):
         }
         return self.post("/validator_confirmation_services", body=body)
 
-    def fetch_banks(self) -> dict:
+    def fetch_banks(self, page: int = 1, limit: int = 50) -> dict:
         """
         Get banks from current bank.
         Return response as a Python object
         """
-
-        return self.fetch("/banks")
+        kwargs = {'page': page, 'limit': limit}
+        return self.fetch("/banks", **kwargs)
 
     def fetch_config(self) -> dict:
         """
@@ -240,12 +246,13 @@ class Bank(BaseClient):
         }
         return self.post("/upgrade_notice", body=body)
 
-    def fetch_blocks(self) -> dict:
+    def fetch_blocks(self, page: int = 1, limit: int = 50) -> dict:
         """
         Get blocks from a Bank
         Return response as Python object
         """
-        return self.fetch("/blocks")
+        kwargs = {'page': page, 'limit': limit}
+        return self.fetch("/blocks", **kwargs)
 
     def post_block(
         self, account_number: str, balance_key: str, transactions: list, signature: str

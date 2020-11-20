@@ -45,27 +45,16 @@ class BaseClient(object):
         GET a `resource` from a Node
         Return response as Python object
         """
+        params = kwargs.get('params', {})
+        page = kwargs.pop('page', 0)
+        limit = kwargs.pop('limit', 0)
+        offset = (page - 1) * limit
+
+        if offset >= 0:
+            params.update({'offset': offset, 'limit': limit})
+            kwargs['params'] = params
+
         return self.send_request("GET", resource, **kwargs)
-
-    def fetch_multiple_page(self, resource: str, **kwargs) -> list:
-        """
-        GET a complete `resource` from a Node where this resource is splited into
-        multiple pages.
-        Return response as Python object
-        """
-        complete_response = []
-        current_response = self.fetch(resource)
-        complete_response += current_response["results"]
-        next_url = current_response["next"]
-
-        while next_url is not None:
-            current_response = self.send_request_from_url(
-                "GET", current_response["next"]
-            )
-            complete_response += current_response["results"]
-            next_url = current_response["next"]
-
-        return complete_response
 
     def delete(self, resource: str, **kwargs: dict) -> Union[dict, list]:
         """
