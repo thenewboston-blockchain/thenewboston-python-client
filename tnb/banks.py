@@ -5,6 +5,10 @@ class Bank(BaseClient):
     def fetch_accounts(self, page: int = 1, limit: int = 50) -> dict:
         """
         Fetch accounts from a Bank
+
+        :param page: Specify the page to retrieve. Default: 1
+        :param limit: Specify the limit of results to retrieve. Default: 50
+
         Return response as Python object
         """
         kwargs = {"page": page, "limit": limit}
@@ -13,6 +17,10 @@ class Bank(BaseClient):
     def fetch_bank_transactions(self, page: int = 1, limit: int = 50) -> dict:
         """
         Get transactions from a Bank
+
+        :param page: Specify the page to retrieve. Default: 1
+        :param limit: Specify the limit of results to retrieve. Default: 50
+
         Return response as Python object
         """
         kwargs = {"page": page, "limit": limit}
@@ -21,6 +29,10 @@ class Bank(BaseClient):
     def fetch_invalid_blocks(self, page: int = 1, limit: int = 50) -> dict:
         """
         Get invalid block from a Bank
+
+        :param page: Specify the page to retrieve. Default: 1
+        :param limit: Specify the limit of results to retrieve. Default: 50
+
         Return response as Python object
         """
         kwargs = {"page": page, "limit": limit}
@@ -29,6 +41,10 @@ class Bank(BaseClient):
     def fetch_confirmation_blocks(self, page: int = 1, limit: int = 50) -> dict:
         """
         Get confirmation blocks from a Bank
+
+        :param page: Specify the page to retrieve. Default: 1
+        :param limit: Specify the limit of results to retrieve. Default: 50
+
         Return response as Python object
         """
         kwargs = {"page": page, "limit": limit}
@@ -37,6 +53,10 @@ class Bank(BaseClient):
     def fetch_validators(self, page: int = 1, limit: int = 50) -> dict:
         """
         Get validators from a Bank
+
+        :param page: Specify the page to retrieve. Default: 1
+        :param limit: Specify the limit of results to retrieve. Default: 50
+
         Return response as Python object
         """
         kwargs = {"page": page, "limit": limit}
@@ -47,6 +67,9 @@ class Bank(BaseClient):
     ) -> dict:
         """
         Get validators confirmation services from a Bank
+
+        :param page: Specify the page to retrieve. Default: 1
+        :param limit: Specify the limit of results to retrieve. Default: 50
 
         Return response as list
         """
@@ -79,6 +102,10 @@ class Bank(BaseClient):
     def fetch_banks(self, page: int = 1, limit: int = 50) -> dict:
         """
         Get banks from current bank.
+
+        :param page: Specify the page to retrieve. Default: 1
+        :param limit: Specify the limit of results to retrieve. Default: 50
+
         Return response as a Python object
         """
         kwargs = {"page": page, "limit": limit}
@@ -251,6 +278,10 @@ class Bank(BaseClient):
     def fetch_blocks(self, page: int = 1, limit: int = 50) -> dict:
         """
         Get blocks from a Bank
+
+        :param page: Specify the page to retrieve. Default: 1
+        :param limit: Specify the limit of results to retrieve. Default: 50
+
         Return response as Python object
         """
         kwargs = {"page": page, "limit": limit}

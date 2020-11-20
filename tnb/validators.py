@@ -5,6 +5,10 @@ class Validator(BaseClient):
     def fetch_accounts(self, page: int = 1, limit: int = 50) -> dict:
         """
         Fetch accounts from validator
+
+        :param page: Specify the page to retrieve. Default: 1
+        :param limit: Specify the limit of results to retrieve. Default: 50
+
         Return response as a Python object
         """
         kwargs = {"page": page, "limit": limit}
