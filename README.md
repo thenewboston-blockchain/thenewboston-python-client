@@ -25,6 +25,14 @@ To produce a source distribution:
 python3 setup.py sdist
 ```
 
+## Documentation
+
+To generate docs:
+```
+cd docs
+make html
+```
+
 ## Community
 
 Join the community to stay updated on the most recent developments, project roadmaps, and random discussions about 
