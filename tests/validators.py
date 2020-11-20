@@ -52,7 +52,7 @@ def test_success_fetch_accounts_on_page_2(requests_mock):
     url = f"http://{address}:80/accounts"
 
     payload = {
-        "count": 4,
+        "count": 6,
         "next": f"{url}?limit=2&offset=4",
         "previous": f"{url}?limit=2",
         "results": results,

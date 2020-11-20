@@ -59,7 +59,7 @@ def test_success_fetch_accounts_on_page_2(requests_mock):
     url = f"http://{address}:80/accounts"
 
     payload = {
-        "count": 4,
+        "count": 6,
         "next": f"{url}?limit=2&offset=4",
         "previous": f"{url}?limit=2",
         "results": results,
@@ -157,7 +157,7 @@ def test_success_fetch_bank_transactions_on_page_2(requests_mock):
     url = f"http://{address}:80/bank_transactions"
 
     payload = {
-        "count": 4,
+        "count": 6,
         "next": f"{url}?limit=2&offset=4",
         "previous": f"{url}?limit=2",
         "results": results,
@@ -282,7 +282,7 @@ def test_success_fetch_confirmations_blocks_on_page_2(requests_mock):
     url = f"http://{address}:80/confirmation_blocks"
 
     payload = {
-        "count": 4,
+        "count": 6,
         "next": f"{url}?limit=2&offset=4",
         "previous": f"{url}?limit=2",
         "results": results,
@@ -355,7 +355,7 @@ def test_success_fetch_validator_confirmation_services_on_page_2(requests_mock):
     url = f"http://{address}:80/validator_confirmation_services"
 
     payload = {
-        "count": 4,
+        "count": 6,
         "next": f"{url}?limit=2&offset=4",
         "previous": f"{url}?limit=2",
         "results": results,
@@ -474,7 +474,7 @@ def test_success_fetch_validators_on_page_2(requests_mock):
     url = f"http://{address}:80/validators"
 
     payload = {
-        "count": 4,
+        "count": 6,
         "next": f"{url}?limit=2&offset=4",
         "previous": f"{url}?limit=2",
         "results": results,
@@ -552,7 +552,7 @@ def test_success_fetch_banks_with_page_2(requests_mock):
     url = f"http://{address}:80/banks"
 
     payload = {
-        "count": 4,
+        "count": 6,
         "next": f"{url}?limit=2&offset=4",
         "previous": f"{url}?limit=2",
         "results": results,
