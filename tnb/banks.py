@@ -247,7 +247,9 @@ class Bank(BaseClient):
         """
         return self.fetch("/blocks")
 
-    def post_block(self, account_number: str, balance_key: str, transactions: list, signature: str) -> dict:
+    def post_block(
+        self, account_number: str, balance_key: str, transactions: list, signature: str
+    ) -> dict:
         """
         Send a block request to a Bank
 
