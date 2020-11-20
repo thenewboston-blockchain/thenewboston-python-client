@@ -2,15 +2,30 @@ from tnb.banks import Bank
 
 
 def test_success_fetch_accounts(requests_mock):
-    result = [
+
+    accounts = [
         {
-            "id": "9eca00a5-d925-454c-a8d6-ecbb26ec2f76",
-            "created_date": "2020-07-08T02:14:59.307535Z",
-            "modified_date": "2020-07-08T02:14:59.307553Z",
-            "account_number": "4d2ec91f37bc553bc538e91195669b666e26b2ea3e4e31507e",
-            "trust": "75.21",
-        }
+            "id": "5a8c7990-393a-4299-ae92-2f096a2c7f43",
+            "created_date": "2020-10-08T02:18:07.346849Z",
+            "modified_date": "2020-10-08T02:18:07.346914Z",
+            "account_number": "a37e2836805975f334108b55523634c995bd2a4db610062f404510617e83126f",
+            "trust": "0.00",
+        },
+        {
+            "id": "2682963f-06b1-47d7-a2e1-1f8ec6ae98dc",
+            "created_date": "2020-10-08T02:39:44.071810Z",
+            "modified_date": "2020-10-08T02:39:44.071853Z",
+            "account_number": "cc8fb4ebbd2b9a98a767e801ac2b0d296ced88b5d3b7d6d6e12e1d2d7635d724",
+            "trust": "0.00",
+        },
     ]
+
+    result = {
+        "count": 2,
+        "next": None,
+        "previous": None,
+        "results": accounts,
+    }
 
     requests_mock.get(
         "http://10.2.3.4:80/accounts",
@@ -23,21 +38,44 @@ def test_success_fetch_accounts(requests_mock):
 
 
 def test_success_fetch_bank_transactions(requests_mock):
-    result = [
+    bank_transactions = [
         {
-            "id": "a85a4692-e03d-4419-8b25-813598b367bd",
+            "id": "8d422974-7ca2-4386-a2aa-26ac0cab00b8",
             "block": {
-                "id": "e00c5522-1b73-4a46-bd03-629d446eec19",
-                "created_date": "2020-07-14T03:14:36.436771Z",
-                "modified_date": "2020-07-14T03:14:36.436796Z",
-                "balance_key": "efa253d24ee516fe5ed45bb4e47a3146026e97f766df1",
-                "sender": "0cdd4ba04456ca169baca3d66eace869520c62fe8442132908",
-                "signature": "a1bbd321ad6d3f74f027de5a2c19457779fe1466708c2ea",
+                "id": "370b5e8c-03ed-4d72-b649-940e1ec82fca",
+                "created_date": "2020-11-19T17:55:22.188130Z",
+                "modified_date": "2020-11-19T17:55:22.188176Z",
+                "balance_key": "0c10b6bd8f6effc2ed5ffc927363f73ebb81b3f086805d7d57bea416fc9796c6",
+                "sender": "0d304450eae6b5094240cc58b008066316d9f641878d9af9dd70885f065913a0",
+                "signature": "743bc0bfcc8db0cd0b736e5cbaf0c5fd1866fd73e805e58cdb2afd3a19"
+                "8d53636a5d9d4560ec047a8c8e221da29a0f7b1b20f3bf879e7bb7c281f0890b413e02",
             },
-            "amount": "12.5000000000000000",
-            "recipient": "484b3176c63d5f37d808404af1a12c4b9649cd6f6769f35bdf5",
-        }
+            "amount": 1,
+            "recipient": "2e86f48216567302527b69eae6c6a188097ed3a9741f43cc3723e570cf47644c",
+        },
+        {
+            "id": "e98c8ce2-d89e-4b72-8e90-61f431a83dd1",
+            "block": {
+                "id": "370b5e8c-03ed-4d72-b649-940e1ec82fca",
+                "created_date": "2020-11-19T17:55:22.188130Z",
+                "modified_date": "2020-11-19T17:55:22.188176Z",
+                "balance_key": "0c10b6bd8f6effc2ed5ffc927363f73ebb81b3f086805d7d57bea416fc9796c6",
+                "sender": "0d304450eae6b5094240cc58b008066316d9f641878d9af9dd70885f065913a0",
+                "signature": "743bc0bfcc8db0cd0b736e5cbaf0c5fd1866fd73e805e58cdb2afd3a19"
+                "8d53636a5d9d4560ec047a8c8e221da29a0f7b1b20f3bf879e7bb7c281f0890b413e02",
+            },
+            "amount": 19600,
+            "recipient": "82ad4b185c2ac04440c8f1c54854819ac2ea374255e8fecc54a6f28d4fcc4814",
+        },
     ]
+
+    result = {
+        "count": 2,
+        "next": None,
+        "previous": None,
+        "results": bank_transactions,
+    }
+
     requests_mock.get(
         "http://10.2.3.4:80/bank_transactions",
         json=result,
@@ -90,56 +128,49 @@ def test_success_fetch_confirmations_blocks(requests_mock):
         },
     ]
 
-    result_page1 = {
-        "count": 2,
-        "next": "http://10.2.3.4:80/confirmation_blocks?limit=50&offset=1",
-        "previous": None,
-        "results": [
-            blocks[0],
-        ],
-    }
-
-    result_page2 = {
+    result = {
         "count": 2,
         "next": None,
-        "previous": "http://10.2.3.4:80/confirmation_blocks",
-        "results": [
-            blocks[1],
-        ],
+        "previous": None,
+        "results": blocks,
     }
+
     requests_mock.get(
         "http://10.2.3.4:80/confirmation_blocks",
-        json=result_page1,
-    )
-    requests_mock.get(
-        "http://10.2.3.4:80/confirmation_blocks?limit=50&offset=1",
-        json=result_page2,
+        json=result,
     )
 
     bank = Bank(address="10.2.3.4")
     response = bank.fetch_confirmation_blocks()
-    assert response == blocks
+    assert response == result
 
 
 def test_success_fetch_validator_confirmation_services(requests_mock):
-    result = [
+    confirmation_services = [
         {
-            "id": "be9fbc3b-d4df-43d5-9bea-9882a6dd27f6",
-            "created_date": "2020-07-09T22:10:35.312956Z",
-            "modified_date": "2020-07-09T22:10:37.393578Z",
-            "end": "2020-08-09T22:10:24Z",
-            "start": "2020-07-09T22:10:25Z",
-            "validator": "51461a75-dd8d-4133-81f4-543a3b054149",
+            "id": "5634f7d5-fa93-40c4-8e53-472055f1aa1c",
+            "created_date": "2020-09-24T22:15:09.375150Z",
+            "modified_date": "2020-09-24T22:15:09.375197Z",
+            "end": "2021-01-27T22:15:09.343282Z",
+            "start": "2020-09-24T22:15:09.343282Z",
+            "validator": "e2a138b0-ebe9-47d2-a146-fb4d9d9ca378",
         },
         {
-            "id": "e2055637-67ff-4479-aec6-a8095d513862",
-            "created_date": "2020-07-09T22:10:35.312956Z",
-            "modified_date": "2020-07-09T22:10:37.393578Z",
-            "end": "2020-08-09T22:10:24Z",
-            "start": "2020-07-09T22:10:25Z",
-            "validator": "10308b02-d577-484e-953c-0a2bdb5e3d83",
+            "id": "817a91bc-9dca-44d2-92ea-55547660e60e",
+            "created_date": "2020-09-24T22:15:30.057923Z",
+            "modified_date": "2020-09-24T22:15:30.057980Z",
+            "end": "2020-11-30T14:15:29.982900Z",
+            "start": "2020-09-24T22:15:29.982900Z",
+            "validator": "97a878ac-328a-47b6-ac93-be6deee75d94",
         },
     ]
+    result = {
+        "count": 2,
+        "next": None,
+        "previous": None,
+        "results": confirmation_services,
+    }
+
     requests_mock.get(
         "http://10.2.3.4:80/validator_confirmation_services",
         json=result,
@@ -160,6 +191,7 @@ def test_success_create_validator_confirmation_service(requests_mock):
         "start": "2020-08-09T22:10:25Z",
         "validator": "fcd2dce8-9e4f-4bf1-8dac-cdbaf64e5ce8",
     }
+
     requests_mock.post(
         "http://10.2.3.4:80/validator_confirmation_services",
         json=result,
@@ -177,27 +209,39 @@ def test_success_create_validator_confirmation_service(requests_mock):
 
 
 def test_success_fetch_validators(requests_mock):
-    result = [
+    validators = [
         {
-            "account_number": "ad1f8845c6a1abb6011a2a434a079a087c460657aad543",
-            "ip_address": "192.168.1.74",
-            "node_identifier": "3afdf37573f1a511def0bd85553404b7091a76bcd79cd",
-            "port": 8000,
+            "account_number": "2e86f48216567302527b69eae6c6a188097ed3a9741f43cc3723e570cf47644c",
+            "ip_address": "54.183.17.224",
+            "node_identifier": "2262026a562b0274163158e92e8fbc4d28e519bc5ba8c1cf403703292be84a51",
+            "port": None,
             "protocol": "http",
             "version": "v1.0",
-            "default_transaction_fee": "4.0000000000000000",
-            "root_account_file": (
-                "https://gist.githubusercontent.com/"
-                "buckyroberts/519b5cb82a0a5b5d4ae8a2175b7"
-                "520/raw/9237deb449e27cab93cb89ea3346ecdf1"
-                "fe9ea/0.json"
-            ),
-            "root_account_file_hash": "4694e1ee1dcfd8ee5f989e59ae40a9f75181f",
+            "default_transaction_fee": 1,
+            "root_account_file": "https://gist.githubusercontent.com/"
+            "buckyroberts/0688f136b6c1332be472a8baf10f78c5/raw/323fcd29672e392be2b934b82ab9eac8d15e840f/alpha-00.json",
+            "root_account_file_hash": "0f775023bee79884fbd9a90a76c5eacfee38a8ca52735f7ab59dab63a75cbee1",
             "seed_block_identifier": "",
             "daily_confirmation_rate": None,
             "trust": "100.00",
-        }
+        },
+        {
+            "account_number": "4699a423c455a40feb1d6b90b167584a880659e1bf9adf9954a727d534ff0c16",
+            "ip_address": "54.219.178.46",
+            "node_identifier": "b1b232503b3db3975524faf98674f22c83f4357c3d946431b8a8568715d7e1d9",
+            "port": None,
+            "protocol": "http",
+            "version": "v1.0",
+            "default_transaction_fee": 1,
+            "root_account_file": "http://54.219.178.46/media/root_account_file.json",
+            "root_account_file_hash": "cc9390cc579dc8a99a1f34c1bea5d54a0f45b27ecee7e38662f0cd853f76744d",
+            "seed_block_identifier": "",
+            "daily_confirmation_rate": 1,
+            "trust": "98.00",
+        },
     ]
+    result = {"count": 2, "next": None, "previous": None, "results": validators}
+
     requests_mock.get(
         "http://10.2.3.4:80/validators",
         json=result,
@@ -209,23 +253,31 @@ def test_success_fetch_validators(requests_mock):
 
 
 def test_success_fetch_banks(requests_mock):
-    result = {
-        "count": 1,
-        "next": None,
-        "previous": None,
-        "results": [
-            {
-                "account_number": "7977b7f7a6f52bf9ebda93694d9276e9e23049eb40b263799fb2a35fa9316b9b",
-                "ip_address": "143.110.141.4",
-                "node_identifier": "735bfc11f802dbb8365998703539823d751ac5f5f82905143fba8a84d967f29b",
-                "port": None,
-                "protocol": "http",
-                "version": "v1.0",
-                "default_transaction_fee": 2,
-                "trust": "0.00",
-            }
-        ],
-    }
+
+    banks = [
+        {
+            "account_number": "dfddf07ec15cbf363ecb52eedd7133b70b3ec896b488460bcecaba63e8e36be5",
+            "ip_address": "143.110.137.54",
+            "node_identifier": "6dbaff44058e630cb375955c82b0d3bd7bc7e20cad93e74909a8951f747fb8a4",
+            "port": None,
+            "protocol": "http",
+            "version": "v1.0",
+            "default_transaction_fee": 1,
+            "trust": "100.00",
+        },
+        {
+            "account_number": "7977b7f7a6f52bf9ebda93694d9276e9e23049eb40b263799fb2a35fa9316b9b",
+            "ip_address": "143.110.141.4",
+            "node_identifier": "735bfc11f802dbb8365998703539823d751ac5f5f82905143fba8a84d967f29b",
+            "port": None,
+            "protocol": "http",
+            "version": "v1.0",
+            "default_transaction_fee": 2,
+            "trust": "0.00",
+        },
+    ]
+
+    result = {"count": 2, "next": None, "previous": None, "results": banks}
 
     requests_mock.get(
         "http://10.2.3.4:80/banks",

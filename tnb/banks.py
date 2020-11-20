@@ -2,42 +2,42 @@ from tnb.base_client import BaseClient
 
 
 class Bank(BaseClient):
-    def fetch_accounts(self) -> list:
+    def fetch_accounts(self) -> dict:
         """
         Fetch accounts from a Bank
         Return response as Python object
         """
         return self.fetch("/accounts")
 
-    def fetch_bank_transactions(self) -> list:
+    def fetch_bank_transactions(self) -> dict:
         """
         Get transactions from a Bank
         Return response as Python object
         """
         return self.fetch("/bank_transactions")
 
-    def fetch_invalid_blocks(self) -> list:
+    def fetch_invalid_blocks(self) -> dict:
         """
         Get invalid block from a Bank
         Return response as Python object
         """
         return self.fetch("/invalid_blocks")
 
-    def fetch_confirmation_blocks(self) -> list:
+    def fetch_confirmation_blocks(self) -> dict:
         """
         Get confirmation blocks from a Bank
         Return response as Python object
         """
-        return self.fetch_multiple_page("/confirmation_blocks")
+        return self.fetch("/confirmation_blocks")
 
-    def fetch_validators(self) -> list:
+    def fetch_validators(self) -> dict:
         """
         Get validators from a Bank
         Return response as Python object
         """
         return self.fetch("/validators")
 
-    def fetch_validator_confirmation_services(self) -> list:
+    def fetch_validator_confirmation_services(self) -> dict:
         """
         Get validators confirmation services from a Bank
 
@@ -49,7 +49,7 @@ class Bank(BaseClient):
         self, msg_end: str, msg_start: str, node_id: str, signature
     ) -> dict:
         """
-        Get validators confirmation services from a Bank
+        Create validators confirmation services from a Bank
 
         :param msg_end: ISO 8601 string that represents the end datetime
             of message
@@ -146,7 +146,7 @@ class Bank(BaseClient):
 
         return self.patch(resource, body=body)
 
-    def send_confirmation_block(self, message, node_id: str, signature: str) -> list:
+    def send_confirmation_block(self, message, node_id: str, signature: str) -> dict:
         """
         Send a confirmation block to a Bank.
 
@@ -165,7 +165,7 @@ class Bank(BaseClient):
 
         return self.post("/confirmation_blocks", body=body)
 
-    def connection_requests(self, node_id: str, signature: str) -> list:
+    def connection_requests(self, node_id: str, signature: str) -> dict:
         """
         Send a connection request to a Bank
 
@@ -240,14 +240,16 @@ class Bank(BaseClient):
         }
         return self.post("/upgrade_notice", body=body)
 
-    def fetch_blocks(self):
+    def fetch_blocks(self) -> dict:
         """
         Get blocks from a Bank
         Return response as Python object
         """
         return self.fetch("/blocks")
 
-    def post_block(self, account_number, balance_key, transactions, signature):
+    def post_block(
+        self, account_number: str, balance_key: str, transactions: list, signature: str
+    ) -> dict:
         """
         Send a block request to a Bank
 

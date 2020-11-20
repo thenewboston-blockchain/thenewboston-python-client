@@ -2,7 +2,7 @@ from tnb.base_client import BaseClient
 
 
 class Validator(BaseClient):
-    def fetch_accounts(self) -> list:
+    def fetch_accounts(self) -> dict:
         """
         Fetch accounts from validator
         Return response as a Python object
