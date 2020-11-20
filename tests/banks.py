@@ -132,7 +132,7 @@ def test_success_fetch_bank_transactions_on_page_2(requests_mock):
                 "balance_key": "0c10b6bd8f6effc2ed5ffc927363f73ebb81b3f086805d7d57bea416fc9796c6",
                 "sender": "0d304450eae6b5094240cc58b008066316d9f641878d9af9dd70885f065913a0",
                 "signature": "743bc0bfcc8db0cd0b736e5cbaf0c5fd1866fd73e805e58cdb2afd3a19"
-                             "8d53636a5d9d4560ec047a8c8e221da29a0f7b1b20f3bf879e7bb7c281f0890b413e02",
+                "8d53636a5d9d4560ec047a8c8e221da29a0f7b1b20f3bf879e7bb7c281f0890b413e02",
             },
             "amount": 1,
             "recipient": "2e86f48216567302527b69eae6c6a188097ed3a9741f43cc3723e570cf47644c",
@@ -146,7 +146,7 @@ def test_success_fetch_bank_transactions_on_page_2(requests_mock):
                 "balance_key": "0c10b6bd8f6effc2ed5ffc927363f73ebb81b3f086805d7d57bea416fc9796c6",
                 "sender": "0d304450eae6b5094240cc58b008066316d9f641878d9af9dd70885f065913a0",
                 "signature": "743bc0bfcc8db0cd0b736e5cbaf0c5fd1866fd73e805e58cdb2afd3a19"
-                             "8d53636a5d9d4560ec047a8c8e221da29a0f7b1b20f3bf879e7bb7c281f0890b413e02",
+                "8d53636a5d9d4560ec047a8c8e221da29a0f7b1b20f3bf879e7bb7c281f0890b413e02",
             },
             "amount": 19600,
             "recipient": "82ad4b185c2ac04440c8f1c54854819ac2ea374255e8fecc54a6f28d4fcc4814",

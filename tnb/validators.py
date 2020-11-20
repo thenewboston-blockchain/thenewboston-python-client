@@ -7,7 +7,7 @@ class Validator(BaseClient):
         Fetch accounts from validator
         Return response as a Python object
         """
-        kwargs = {'page': page, 'limit': limit}
+        kwargs = {"page": page, "limit": limit}
         return self.fetch("/accounts", **kwargs)
 
     def fetch_account_balance(self, account_number: str) -> dict:
