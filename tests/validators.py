@@ -61,7 +61,7 @@ def test_success_fetch_accounts_on_page_2(requests_mock):
     requests_mock.get(f"{url}?limit=2&offset=2", json=payload)
 
     validator = Validator(address=address)
-    response = validator.fetch_accounts(page=2, limit=2)
+    response = validator.fetch_accounts(offset=2, limit=2)
     assert response == payload
 
 

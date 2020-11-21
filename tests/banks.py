@@ -68,7 +68,7 @@ def test_success_fetch_accounts_on_page_2(requests_mock):
     requests_mock.get(f"{url}?limit=2&offset=2", json=payload)
 
     bank = Bank(address=address)
-    response = bank.fetch_accounts(page=2, limit=2)
+    response = bank.fetch_accounts(offset=2, limit=2)
     assert response == payload
 
 
@@ -166,7 +166,7 @@ def test_success_fetch_bank_transactions_on_page_2(requests_mock):
     requests_mock.get(f"{url}?limit=2&offset=2", json=payload)
 
     bank = Bank(address=address)
-    response = bank.fetch_bank_transactions(page=2, limit=2)
+    response = bank.fetch_bank_transactions(offset=2, limit=2)
     assert response == payload
 
 
@@ -217,7 +217,7 @@ def test_success_fetch_invalid_blocks_on_page_2(requests_mock):
 
     requests_mock.get(f"{url}?limit=2&offset=2", json=payload)
     bank = Bank(address=address)
-    response = bank.fetch_invalid_blocks(page=2, limit=2)
+    response = bank.fetch_invalid_blocks(offset=2, limit=2)
     assert response == payload
 
 
@@ -290,7 +290,7 @@ def test_success_fetch_confirmations_blocks_on_page_2(requests_mock):
 
     requests_mock.get(url, json=payload)
     bank = Bank(address=address)
-    response = bank.fetch_confirmation_blocks(page=2, limit=2)
+    response = bank.fetch_confirmation_blocks(offset=2, limit=2)
     assert response == payload
 
 
@@ -363,7 +363,7 @@ def test_success_fetch_validator_confirmation_services_on_page_2(requests_mock):
 
     requests_mock.get(url, json=payload)
     bank = Bank(address=address)
-    response = bank.fetch_validator_confirmation_services(page=2, limit=2)
+    response = bank.fetch_validator_confirmation_services(offset=2, limit=2)
     assert response == payload
 
 
@@ -482,7 +482,7 @@ def test_success_fetch_validators_on_page_2(requests_mock):
 
     requests_mock.get(url, json=payload)
     bank = Bank(address=address)
-    response = bank.fetch_validators(page=2, limit=2)
+    response = bank.fetch_validators(offset=2, limit=2)
     assert response == payload
 
 
@@ -560,7 +560,7 @@ def test_success_fetch_banks_with_page_2(requests_mock):
 
     requests_mock.get(url, json=payload)
     bank = Bank(address=address)
-    response = bank.fetch_banks(page=2, limit=2)
+    response = bank.fetch_banks(offset=2, limit=2)
     assert response == payload
 
 

@@ -2,79 +2,79 @@ from tnb.base_client import BaseClient
 
 
 class Bank(BaseClient):
-    def fetch_accounts(self, page: int = 1, limit: int = 50) -> dict:
+    def fetch_accounts(self, offset: int = 0, limit: int = 50) -> dict:
         """
         Fetch accounts from a Bank
 
-        :param page: Specify the page to retrieve. Default: 1
-        :param limit: Specify the limit of results to retrieve. Default: 50
+        :param offset: The offset to start at. Default: 0
+        :param limit: The limit of results to retrieve. Default: 50
 
         Return response as Python object
         """
-        kwargs = {"page": page, "limit": limit}
-        return self.fetch("/accounts", **kwargs)
+        params = {"offset": offset, "limit": limit}
+        return self.fetch("/accounts", params=params)
 
-    def fetch_bank_transactions(self, page: int = 1, limit: int = 50) -> dict:
+    def fetch_bank_transactions(self, offset: int = 0, limit: int = 50) -> dict:
         """
         Get transactions from a Bank
 
-        :param page: Specify the page to retrieve. Default: 1
-        :param limit: Specify the limit of results to retrieve. Default: 50
+        :param offset: The offset to start at. Default: 0
+        :param limit: The limit of results to retrieve. Default: 50
 
         Return response as Python object
         """
-        kwargs = {"page": page, "limit": limit}
-        return self.fetch("/bank_transactions", **kwargs)
+        params = {"offset": offset, "limit": limit}
+        return self.fetch("/bank_transactions", params=params)
 
-    def fetch_invalid_blocks(self, page: int = 1, limit: int = 50) -> dict:
+    def fetch_invalid_blocks(self, offset: int = 0, limit: int = 50) -> dict:
         """
         Get invalid block from a Bank
 
-        :param page: Specify the page to retrieve. Default: 1
-        :param limit: Specify the limit of results to retrieve. Default: 50
+        :param offset: The offset to start at. Default: 0
+        :param limit: The limit of results to retrieve. Default: 50
 
         Return response as Python object
         """
-        kwargs = {"page": page, "limit": limit}
-        return self.fetch("/invalid_blocks", **kwargs)
+        params = {"offset": offset, "limit": limit}
+        return self.fetch("/invalid_blocks", params=params)
 
-    def fetch_confirmation_blocks(self, page: int = 1, limit: int = 50) -> dict:
+    def fetch_confirmation_blocks(self, offset: int = 0, limit: int = 50) -> dict:
         """
         Get confirmation blocks from a Bank
 
-        :param page: Specify the page to retrieve. Default: 1
-        :param limit: Specify the limit of results to retrieve. Default: 50
+        :param offset: The offset to start at. Default: 0
+        :param limit: The limit of results to retrieve. Default: 50
 
         Return response as Python object
         """
-        kwargs = {"page": page, "limit": limit}
-        return self.fetch("/confirmation_blocks", **kwargs)
+        params = {"offset": offset, "limit": limit}
+        return self.fetch("/confirmation_blocks", params=params)
 
-    def fetch_validators(self, page: int = 1, limit: int = 50) -> dict:
+    def fetch_validators(self, offset: int = 0, limit: int = 50) -> dict:
         """
         Get validators from a Bank
 
-        :param page: Specify the page to retrieve. Default: 1
-        :param limit: Specify the limit of results to retrieve. Default: 50
+        :param offset: The offset to start at. Default: 0
+        :param limit: The limit of results to retrieve. Default: 50
 
         Return response as Python object
         """
-        kwargs = {"page": page, "limit": limit}
-        return self.fetch("/validators", **kwargs)
+        params = {"offset": offset, "limit": limit}
+        return self.fetch("/validators", params=params)
 
     def fetch_validator_confirmation_services(
-        self, page: int = 1, limit: int = 50
+        self, offset: int = 0, limit: int = 50
     ) -> dict:
         """
         Get validators confirmation services from a Bank
 
-        :param page: Specify the page to retrieve. Default: 1
-        :param limit: Specify the limit of results to retrieve. Default: 50
+        :param offset: The offset to start at. Default: 0
+        :param limit: The limit of results to retrieve. Default: 50
 
         Return response as list
         """
-        kwargs = {"page": page, "limit": limit}
-        return self.fetch("/validator_confirmation_services", **kwargs)
+        params = {"offset": offset, "limit": limit}
+        return self.fetch("/validator_confirmation_services", params=params)
 
     def create_validator_confirmation_service(
         self, msg_end: str, msg_start: str, node_id: str, signature
@@ -99,17 +99,17 @@ class Bank(BaseClient):
         }
         return self.post("/validator_confirmation_services", body=body)
 
-    def fetch_banks(self, page: int = 1, limit: int = 50) -> dict:
+    def fetch_banks(self, offset: int = 0, limit: int = 50) -> dict:
         """
         Get banks from current bank.
 
-        :param page: Specify the page to retrieve. Default: 1
-        :param limit: Specify the limit of results to retrieve. Default: 50
+        :param offset: The offset to start at. Default: 0
+        :param limit: The limit of results to retrieve. Default: 50
 
         Return response as a Python object
         """
-        kwargs = {"page": page, "limit": limit}
-        return self.fetch("/banks", **kwargs)
+        params = {"offset": offset, "limit": limit}
+        return self.fetch("/banks", params=params)
 
     def fetch_config(self) -> dict:
         """
@@ -275,17 +275,17 @@ class Bank(BaseClient):
         }
         return self.post("/upgrade_notice", body=body)
 
-    def fetch_blocks(self, page: int = 1, limit: int = 50) -> dict:
+    def fetch_blocks(self, offset: int = 0, limit: int = 50) -> dict:
         """
         Get blocks from a Bank
 
-        :param page: Specify the page to retrieve. Default: 1
-        :param limit: Specify the limit of results to retrieve. Default: 50
+        :param offset: The offset to start at. Default: 0
+        :param limit: The limit of results to retrieve. Default: 50
 
         Return response as Python object
         """
-        kwargs = {"page": page, "limit": limit}
-        return self.fetch("/blocks", **kwargs)
+        params = {"offset": offset, "limit": limit}
+        return self.fetch("/blocks", params=params)
 
     def post_block(
         self, account_number: str, balance_key: str, transactions: list, signature: str

@@ -45,15 +45,6 @@ class BaseClient(object):
         GET a `resource` from a Node
         Return response as Python object
         """
-        params = kwargs.get("params", {})
-        page = kwargs.pop("page", 0)
-        limit = kwargs.pop("limit", 0)
-        offset = (page - 1) * limit
-
-        if offset >= 0:
-            params.update({"offset": offset, "limit": limit})
-            kwargs["params"] = params
-
         return self.send_request("GET", resource, **kwargs)
 
     def delete(self, resource: str, **kwargs: dict) -> Union[dict, list]:
