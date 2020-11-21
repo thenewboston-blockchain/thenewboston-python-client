@@ -2,48 +2,79 @@ from tnb.base_client import BaseClient
 
 
 class Bank(BaseClient):
-    def fetch_accounts(self) -> dict:
+    def fetch_accounts(self, offset: int = 0, limit: int = 50) -> dict:
         """
         Fetch accounts from a Bank
+
+        :param offset: The offset to start at. Default: 0
+        :param limit: The limit of results to retrieve. Default: 50
+
         Return response as Python object
         """
-        return self.fetch("/accounts")
+        params = {"offset": offset, "limit": limit}
+        return self.fetch("/accounts", params=params)
 
-    def fetch_bank_transactions(self) -> dict:
+    def fetch_bank_transactions(self, offset: int = 0, limit: int = 50) -> dict:
         """
         Get transactions from a Bank
+
+        :param offset: The offset to start at. Default: 0
+        :param limit: The limit of results to retrieve. Default: 50
+
         Return response as Python object
         """
-        return self.fetch("/bank_transactions")
+        params = {"offset": offset, "limit": limit}
+        return self.fetch("/bank_transactions", params=params)
 
-    def fetch_invalid_blocks(self) -> dict:
+    def fetch_invalid_blocks(self, offset: int = 0, limit: int = 50) -> dict:
         """
         Get invalid block from a Bank
+
+        :param offset: The offset to start at. Default: 0
+        :param limit: The limit of results to retrieve. Default: 50
+
         Return response as Python object
         """
-        return self.fetch("/invalid_blocks")
+        params = {"offset": offset, "limit": limit}
+        return self.fetch("/invalid_blocks", params=params)
 
-    def fetch_confirmation_blocks(self) -> dict:
+    def fetch_confirmation_blocks(self, offset: int = 0, limit: int = 50) -> dict:
         """
         Get confirmation blocks from a Bank
+
+        :param offset: The offset to start at. Default: 0
+        :param limit: The limit of results to retrieve. Default: 50
+
         Return response as Python object
         """
-        return self.fetch("/confirmation_blocks")
+        params = {"offset": offset, "limit": limit}
+        return self.fetch("/confirmation_blocks", params=params)
 
-    def fetch_validators(self) -> dict:
+    def fetch_validators(self, offset: int = 0, limit: int = 50) -> dict:
         """
         Get validators from a Bank
+
+        :param offset: The offset to start at. Default: 0
+        :param limit: The limit of results to retrieve. Default: 50
+
         Return response as Python object
         """
-        return self.fetch("/validators")
+        params = {"offset": offset, "limit": limit}
+        return self.fetch("/validators", params=params)
 
-    def fetch_validator_confirmation_services(self) -> dict:
+    def fetch_validator_confirmation_services(
+        self, offset: int = 0, limit: int = 50
+    ) -> dict:
         """
         Get validators confirmation services from a Bank
 
+        :param offset: The offset to start at. Default: 0
+        :param limit: The limit of results to retrieve. Default: 50
+
         Return response as list
         """
-        return self.fetch("/validator_confirmation_services")
+        params = {"offset": offset, "limit": limit}
+        return self.fetch("/validator_confirmation_services", params=params)
 
     def create_validator_confirmation_service(
         self, msg_end: str, msg_start: str, node_id: str, signature
@@ -68,13 +99,17 @@ class Bank(BaseClient):
         }
         return self.post("/validator_confirmation_services", body=body)
 
-    def fetch_banks(self) -> dict:
+    def fetch_banks(self, offset: int = 0, limit: int = 50) -> dict:
         """
         Get banks from current bank.
+
+        :param offset: The offset to start at. Default: 0
+        :param limit: The limit of results to retrieve. Default: 50
+
         Return response as a Python object
         """
-
-        return self.fetch("/banks")
+        params = {"offset": offset, "limit": limit}
+        return self.fetch("/banks", params=params)
 
     def fetch_config(self) -> dict:
         """
@@ -240,12 +275,17 @@ class Bank(BaseClient):
         }
         return self.post("/upgrade_notice", body=body)
 
-    def fetch_blocks(self) -> dict:
+    def fetch_blocks(self, offset: int = 0, limit: int = 50) -> dict:
         """
         Get blocks from a Bank
+
+        :param offset: The offset to start at. Default: 0
+        :param limit: The limit of results to retrieve. Default: 50
+
         Return response as Python object
         """
-        return self.fetch("/blocks")
+        params = {"offset": offset, "limit": limit}
+        return self.fetch("/blocks", params=params)
 
     def post_block(
         self, account_number: str, balance_key: str, transactions: list, signature: str
