@@ -15,7 +15,7 @@ class BaseClient(object):
         self.port = port
         self.base_url = f"{protocol}://{address}:{port}/"
 
-    def send_request(
+    def __send_request(
         self, method: str, resource: str, **kwargs: dict
     ) -> Union[dict, list]:
         """
@@ -28,7 +28,7 @@ class BaseClient(object):
 
         return response.json()
 
-    def send_request_from_url(
+    def __send_request_from_url(
         self, method: str, url: str, **kwargs: dict
     ) -> Union[dict, list]:
         """
@@ -45,7 +45,7 @@ class BaseClient(object):
         GET a `resource` from a Node
         Return response as Python object
         """
-        return self.send_request("GET", resource, **kwargs)
+        return self.__send_request("GET", resource, **kwargs)
 
     def fetch_multiple_page(self, resource: str, **kwargs) -> list:
         """
@@ -59,7 +59,7 @@ class BaseClient(object):
         next_url = current_response["next"]
 
         while next_url is not None:
-            current_response = self.send_request_from_url(
+            current_response = self.__send_request_from_url(
                 "GET", current_response["next"]
             )
             complete_response += current_response["results"]
@@ -72,25 +72,25 @@ class BaseClient(object):
         DELETE a `resource` from a Node
         Return response as Python object
         """
-        return self.send_request("DELETE", resource, **kwargs)
+        return self.__send_request("DELETE", resource, **kwargs)
 
     def patch(self, resource: str, body: dict, **kwargs: dict) -> Union[dict, list]:
         """
         PATCH a `resource` to a Node
         Return response as Python object
         """
-        return self.send_request("PATCH", resource, json=body, **kwargs)
+        return self.__send_request("PATCH", resource, json=body, **kwargs)
 
     def post(self, resource: str, body: dict, **kwargs: dict) -> Union[dict, list]:
         """
         POST a `resource` to a Node
         Return response as Python object
         """
-        return self.send_request("POST", resource, json=body, **kwargs)
+        return self.__send_request("POST", resource, json=body, **kwargs)
 
     def put(self, resource: str, body: dict, **kwargs: dict) -> Union[dict, list]:
         """
         PUT a `resource` to a Node
         Return response as Python object
         """
-        return self.send_request("PUT", resource, json=body, **kwargs)
+        return self.__send_request("PUT", resource, json=body, **kwargs)
