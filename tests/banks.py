@@ -37,6 +37,41 @@ def test_success_fetch_accounts(requests_mock):
     assert response == result
 
 
+def test_success_fetch_accounts_on_page_2(requests_mock):
+    results = [
+        {
+            "id": "5a8c7990-393a-4299-ae92-2f096a2c7f43",
+            "created_date": "2020-10-08T02:18:07.346849Z",
+            "modified_date": "2020-10-08T02:18:07.346914Z",
+            "account_number": "a37e2836805975f334108b55523634c995bd2a4db610062f404510617e83126f",
+            "trust": "0.00",
+        },
+        {
+            "id": "2682963f-06b1-47d7-a2e1-1f8ec6ae98dc",
+            "created_date": "2020-10-08T02:39:44.071810Z",
+            "modified_date": "2020-10-08T02:39:44.071853Z",
+            "account_number": "cc8fb4ebbd2b9a98a767e801ac2b0d296ced88b5d3b7d6d6e12e1d2d7635d724",
+            "trust": "0.00",
+        },
+    ]
+
+    address = "10.2.3.4"
+    url = f"http://{address}:80/accounts"
+
+    payload = {
+        "count": 6,
+        "next": f"{url}?limit=2&offset=4",
+        "previous": f"{url}?limit=2",
+        "results": results,
+    }
+
+    requests_mock.get(f"{url}?limit=2&offset=2", json=payload)
+
+    bank = Bank(address=address)
+    response = bank.fetch_accounts(offset=2, limit=2)
+    assert response == payload
+
+
 def test_success_fetch_bank_transactions(requests_mock):
     bank_transactions = [
         {
@@ -86,6 +121,55 @@ def test_success_fetch_bank_transactions(requests_mock):
     assert response == result
 
 
+def test_success_fetch_bank_transactions_on_page_2(requests_mock):
+    results = [
+        {
+            "id": "8d422974-7ca2-4386-a2aa-26ac0cab00b8",
+            "block": {
+                "id": "370b5e8c-03ed-4d72-b649-940e1ec82fca",
+                "created_date": "2020-11-19T17:55:22.188130Z",
+                "modified_date": "2020-11-19T17:55:22.188176Z",
+                "balance_key": "0c10b6bd8f6effc2ed5ffc927363f73ebb81b3f086805d7d57bea416fc9796c6",
+                "sender": "0d304450eae6b5094240cc58b008066316d9f641878d9af9dd70885f065913a0",
+                "signature": "743bc0bfcc8db0cd0b736e5cbaf0c5fd1866fd73e805e58cdb2afd3a19"
+                "8d53636a5d9d4560ec047a8c8e221da29a0f7b1b20f3bf879e7bb7c281f0890b413e02",
+            },
+            "amount": 1,
+            "recipient": "2e86f48216567302527b69eae6c6a188097ed3a9741f43cc3723e570cf47644c",
+        },
+        {
+            "id": "e98c8ce2-d89e-4b72-8e90-61f431a83dd1",
+            "block": {
+                "id": "370b5e8c-03ed-4d72-b649-940e1ec82fca",
+                "created_date": "2020-11-19T17:55:22.188130Z",
+                "modified_date": "2020-11-19T17:55:22.188176Z",
+                "balance_key": "0c10b6bd8f6effc2ed5ffc927363f73ebb81b3f086805d7d57bea416fc9796c6",
+                "sender": "0d304450eae6b5094240cc58b008066316d9f641878d9af9dd70885f065913a0",
+                "signature": "743bc0bfcc8db0cd0b736e5cbaf0c5fd1866fd73e805e58cdb2afd3a19"
+                "8d53636a5d9d4560ec047a8c8e221da29a0f7b1b20f3bf879e7bb7c281f0890b413e02",
+            },
+            "amount": 19600,
+            "recipient": "82ad4b185c2ac04440c8f1c54854819ac2ea374255e8fecc54a6f28d4fcc4814",
+        },
+    ]
+
+    address = "10.2.3.4"
+    url = f"http://{address}:80/bank_transactions"
+
+    payload = {
+        "count": 6,
+        "next": f"{url}?limit=2&offset=4",
+        "previous": f"{url}?limit=2",
+        "results": results,
+    }
+
+    requests_mock.get(f"{url}?limit=2&offset=2", json=payload)
+
+    bank = Bank(address=address)
+    response = bank.fetch_bank_transactions(offset=2, limit=2)
+    assert response == payload
+
+
 def test_success_fetch_invalid_blocks(requests_mock):
     result = [
         {
@@ -106,6 +190,35 @@ def test_success_fetch_invalid_blocks(requests_mock):
     bank = Bank(address="10.2.3.4")
     response = bank.fetch_invalid_blocks()
     assert response == result
+
+
+def test_success_fetch_invalid_blocks_on_page_2(requests_mock):
+    results = [
+        {
+            "id": "2bcd53c5-19f9-4226-ab04-3dfb17c3a1fe",
+            "created_date": "2020-07-11T18:44:16.518695Z",
+            "modified_date": "2020-07-11T18:44:16.518719Z",
+            "block_identifier": "65ae26192dfb9ec41f88c6d582b374a9b42ab58833e",
+            "block": "3ff4ebb0-2b3d-429b-ba90-08133fcdee4e",
+            "confirmation_validator": "fcd2dce8-9e4f-4bf1-8dac-cdbaf64e5ce8",
+            "primary_validator": "51461a75-dd8d-4133-81f4-543a3b054149",
+        }
+    ]
+
+    address = "10.2.3.4"
+    url = f"http://{address}:80/invalid_blocks"
+
+    payload = {
+        "count": 3,
+        "next": None,
+        "previous": f"{url}?limit=2",
+        "results": results,
+    }
+
+    requests_mock.get(f"{url}?limit=2&offset=2", json=payload)
+    bank = Bank(address=address)
+    response = bank.fetch_invalid_blocks(offset=2, limit=2)
+    assert response == payload
 
 
 def test_success_fetch_confirmations_blocks(requests_mock):
@@ -145,6 +258,42 @@ def test_success_fetch_confirmations_blocks(requests_mock):
     assert response == result
 
 
+def test_success_fetch_confirmations_blocks_on_page_2(requests_mock):
+    results = [
+        {
+            "id": "e7c5c2e0-8ed1-4eb3-abd8-97fa2e5ca8db",
+            "created_date": "2020-10-08T02:18:07.908635Z",
+            "modified_date": "2020-10-08T02:18:07.908702Z",
+            "block_identifier": "824614aa97edb391784b17ce6956b70aed31edf741c1858d43ae4d566b2a13ed",
+            "block": "c6fc11cf-8948-4d32-96c9-d56caa6d5b24",
+            "validator": "e2a138b0-ebe9-47d2-a146-fb4d9d9ca378",
+        },
+        {
+            "id": "78babf4b-74ed-442e-b5ab-7b23345c18f8",
+            "created_date": "2020-10-08T02:18:07.998146Z",
+            "modified_date": "2020-10-08T02:18:07.998206Z",
+            "block_identifier": "824614aa97edb391784b17ce6956b70aed31edf741c1858d43ae4d566b2a13ed",
+            "block": "c6fc11cf-8948-4d32-96c9-d56caa6d5b24",
+            "validator": "97a878ac-328a-47b6-ac93-be6deee75d94",
+        },
+    ]
+
+    address = "10.2.3.4"
+    url = f"http://{address}:80/confirmation_blocks"
+
+    payload = {
+        "count": 6,
+        "next": f"{url}?limit=2&offset=4",
+        "previous": f"{url}?limit=2",
+        "results": results,
+    }
+
+    requests_mock.get(url, json=payload)
+    bank = Bank(address=address)
+    response = bank.fetch_confirmation_blocks(offset=2, limit=2)
+    assert response == payload
+
+
 def test_success_fetch_validator_confirmation_services(requests_mock):
     confirmation_services = [
         {
@@ -180,6 +329,42 @@ def test_success_fetch_validator_confirmation_services(requests_mock):
     response = bank.fetch_validator_confirmation_services()
 
     assert response == result
+
+
+def test_success_fetch_validator_confirmation_services_on_page_2(requests_mock):
+    results = [
+        {
+            "id": "5634f7d5-fa93-40c4-8e53-472055f1aa1c",
+            "created_date": "2020-09-24T22:15:09.375150Z",
+            "modified_date": "2020-09-24T22:15:09.375197Z",
+            "end": "2021-01-27T22:15:09.343282Z",
+            "start": "2020-09-24T22:15:09.343282Z",
+            "validator": "e2a138b0-ebe9-47d2-a146-fb4d9d9ca378",
+        },
+        {
+            "id": "817a91bc-9dca-44d2-92ea-55547660e60e",
+            "created_date": "2020-09-24T22:15:30.057923Z",
+            "modified_date": "2020-09-24T22:15:30.057980Z",
+            "end": "2020-11-30T14:15:29.982900Z",
+            "start": "2020-09-24T22:15:29.982900Z",
+            "validator": "97a878ac-328a-47b6-ac93-be6deee75d94",
+        },
+    ]
+
+    address = "10.2.3.4"
+    url = f"http://{address}:80/validator_confirmation_services"
+
+    payload = {
+        "count": 6,
+        "next": f"{url}?limit=2&offset=4",
+        "previous": f"{url}?limit=2",
+        "results": results,
+    }
+
+    requests_mock.get(url, json=payload)
+    bank = Bank(address=address)
+    response = bank.fetch_validator_confirmation_services(offset=2, limit=2)
+    assert response == payload
 
 
 def test_success_create_validator_confirmation_service(requests_mock):
@@ -252,6 +437,55 @@ def test_success_fetch_validators(requests_mock):
     assert response == result
 
 
+def test_success_fetch_validators_on_page_2(requests_mock):
+    results = [
+        {
+            "account_number": "2e86f48216567302527b69eae6c6a188097ed3a9741f43cc3723e570cf47644c",
+            "ip_address": "54.183.17.224",
+            "node_identifier": "2262026a562b0274163158e92e8fbc4d28e519bc5ba8c1cf403703292be84a51",
+            "port": None,
+            "protocol": "http",
+            "version": "v1.0",
+            "default_transaction_fee": 1,
+            "root_account_file": "https://gist.githubusercontent.com/"
+            "buckyroberts/0688f136b6c1332be472a8baf10f78c5/raw/323fcd29672e392be2b934b82ab9eac8d15e840f/alpha-00.json",
+            "root_account_file_hash": "0f775023bee79884fbd9a90a76c5eacfee38a8ca52735f7ab59dab63a75cbee1",
+            "seed_block_identifier": "",
+            "daily_confirmation_rate": None,
+            "trust": "100.00",
+        },
+        {
+            "account_number": "4699a423c455a40feb1d6b90b167584a880659e1bf9adf9954a727d534ff0c16",
+            "ip_address": "54.219.178.46",
+            "node_identifier": "b1b232503b3db3975524faf98674f22c83f4357c3d946431b8a8568715d7e1d9",
+            "port": None,
+            "protocol": "http",
+            "version": "v1.0",
+            "default_transaction_fee": 1,
+            "root_account_file": "http://54.219.178.46/media/root_account_file.json",
+            "root_account_file_hash": "cc9390cc579dc8a99a1f34c1bea5d54a0f45b27ecee7e38662f0cd853f76744d",
+            "seed_block_identifier": "",
+            "daily_confirmation_rate": 1,
+            "trust": "98.00",
+        },
+    ]
+
+    address = "10.2.3.4"
+    url = f"http://{address}:80/validators"
+
+    payload = {
+        "count": 6,
+        "next": f"{url}?limit=2&offset=4",
+        "previous": f"{url}?limit=2",
+        "results": results,
+    }
+
+    requests_mock.get(url, json=payload)
+    bank = Bank(address=address)
+    response = bank.fetch_validators(offset=2, limit=2)
+    assert response == payload
+
+
 def test_success_fetch_banks(requests_mock):
 
     banks = [
@@ -288,6 +522,46 @@ def test_success_fetch_banks(requests_mock):
     response = bank.fetch_banks()
 
     assert response == result
+
+
+def test_success_fetch_banks_with_page_2(requests_mock):
+    results = [
+        {
+            "account_number": "dfddf07ec15cbf363ecb52eedd7133b70b3ec896b488460bcecaba63e8e36be5",
+            "ip_address": "143.110.137.54",
+            "node_identifier": "6dbaff44058e630cb375955c82b0d3bd7bc7e20cad93e74909a8951f747fb8a4",
+            "port": None,
+            "protocol": "http",
+            "version": "v1.0",
+            "default_transaction_fee": 1,
+            "trust": "100.00",
+        },
+        {
+            "account_number": "7977b7f7a6f52bf9ebda93694d9276e9e23049eb40b263799fb2a35fa9316b9b",
+            "ip_address": "143.110.141.4",
+            "node_identifier": "735bfc11f802dbb8365998703539823d751ac5f5f82905143fba8a84d967f29b",
+            "port": None,
+            "protocol": "http",
+            "version": "v1.0",
+            "default_transaction_fee": 2,
+            "trust": "0.00",
+        },
+    ]
+
+    address = "10.2.3.4"
+    url = f"http://{address}:80/banks"
+
+    payload = {
+        "count": 6,
+        "next": f"{url}?limit=2&offset=4",
+        "previous": f"{url}?limit=2",
+        "results": results,
+    }
+
+    requests_mock.get(url, json=payload)
+    bank = Bank(address=address)
+    response = bank.fetch_banks(offset=2, limit=2)
+    assert response == payload
 
 
 def test_success_fetch_config(requests_mock):
@@ -460,6 +734,35 @@ def test_success_fetch_blocks(requests_mock):
     bank = Bank(address="10.2.3.4")
     response = bank.fetch_blocks()
     assert response == result
+
+
+def test_success_fetch_blocks_on_page_2(requests_mock):
+    results = [
+        {
+            "id": "2bcd53c5-19f9-4226-ab04-3dfb17c3a1fe",
+            "created_date": "2020-07-11T18:44:16.518695Z",
+            "modified_date": "2020-07-11T18:44:16.518719Z",
+            "block_identifier": "65ae26192dfb9ec41f88c6d582b374a9b42ab58833e1612452d7a8f685dcd4d5",
+            "block": "3ff4ebb0-2b3d-429b-ba90-08133fcdee4e",
+            "confirmation_validator": "fcd2dce8-9e4f-4bf1-8dac-cdbaf64e5ce8",
+            "primary_validator": "51461a75-dd8d-4133-81f4-543a3b054149",
+        }
+    ]
+
+    address = "10.2.3.4"
+    url = f"http://{address}:80/blocks"
+
+    payload = {
+        "count": 3,
+        "next": None,
+        "previous": f"{url}?limit=2",
+        "results": results,
+    }
+
+    requests_mock.get(url, json=payload)
+    bank = Bank(address=address)
+    response = bank.fetch_blocks()
+    assert response == payload
 
 
 def test_success_post_block(requests_mock):
