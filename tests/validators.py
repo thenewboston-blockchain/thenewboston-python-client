@@ -294,7 +294,10 @@ def test_success_patch_bank(requests_mock):
     }
 
     node_id = "d5356888dc9303e44ce52b1e06c3165a7759b9df1e6a6dfbd33ee1c3df1ab4d1"
-    signature = "3c88665e123e7e25a8b9d9592f3269ab4efc4bcba989a103a898e2625933261b1cccdaf2f52eca9c58d2bf033968ab6b702089bca8fc6e0c80b3b002a5e05b03"
+    signature = (
+        "3c88665e123e7e25a8b9d9592f3269ab4efc4bcba989a103a898e2625933261b1cccdaf2f52eca9c5"
+        "8d2bf033968ab6b702089bca8fc6e0c80b3b002a5e05b03"
+    )
     requests_mock.patch(f"http://42.0.6.9:80/banks/{node_id}", json=result)
 
     validator = Validator(address="42.0.6.9")
@@ -313,7 +316,8 @@ def test_success_fetch_validators(requests_mock):
             "protocol": "http",
             "version": "v1.0",
             "default_transaction_fee": 1,
-            "root_account_file": "https://gist.githubusercontent.com/buckyroberts/0688f136b6c1332be472a8baf10f78c5/raw/323fcd29672e392be2b934b82ab9eac8d15e840f/alpha-00.json",
+            "root_account_file": "https://gist.githubusercontent.com/buckyroberts/0688f136b6c1332be472a8b"
+            "af10f78c5/raw/323fcd29672e392be2b934b82ab9eac8d15e840f/alpha-00.json",
             "root_account_file_hash": "0f775023bee79884fbd9a90a76c5eacfee38a8ca52735f7ab59dab63a75cbee1",
             "seed_block_identifier": "",
             "daily_confirmation_rate": None,
@@ -327,7 +331,8 @@ def test_success_fetch_validators(requests_mock):
             "protocol": "http",
             "version": "v1.0",
             "default_transaction_fee": 1,
-            "root_account_file": "https://gist.githubusercontent.com/buckyroberts/0688f136b6c1332be472a8baf10f78c5/raw/323fcd29672e392be2b934b82ab9eac8d15e840f/alpha-00.json",
+            "root_account_file": "https://gist.githubusercontent.com/buckyroberts/0688f136b6c1332be472a8baf1"
+            "0f78c5/raw/323fcd29672e392be2b934b82ab9eac8d15e840f/alpha-00.json",
             "root_account_file_hash": "0f775023bee79884fbd9a90a76c5eacfee38a8ca52735f7ab59dab63a75cbee1",
             "seed_block_identifier": "",
             "daily_confirmation_rate": None,
@@ -355,7 +360,8 @@ def test_success_fetch_validators_page_2(requests_mock):
             "protocol": "http",
             "version": "v1.0",
             "default_transaction_fee": 1,
-            "root_account_file": "https://gist.githubusercontent.com/buckyroberts/0688f136b6c1332be472a8baf10f78c5/raw/323fcd29672e392be2b934b82ab9eac8d15e840f/alpha-00.json",
+            "root_account_file": "https://gist.githubusercontent.com/buckyroberts/0688f136b6c1332be472"
+            "a8baf10f78c5/raw/323fcd29672e392be2b934b82ab9eac8d15e840f/alpha-00.json",
             "root_account_file_hash": "0f775023bee79884fbd9a90a76c5eacfee38a8ca52735f7ab59dab63a75cbee1",
             "seed_block_identifier": "",
             "daily_confirmation_rate": None,
@@ -369,7 +375,8 @@ def test_success_fetch_validators_page_2(requests_mock):
             "protocol": "http",
             "version": "v1.0",
             "default_transaction_fee": 1,
-            "root_account_file": "https://gist.githubusercontent.com/buckyroberts/0688f136b6c1332be472a8baf10f78c5/raw/323fcd29672e392be2b934b82ab9eac8d15e840f/alpha-00.json",
+            "root_account_file": "https://gist.githubusercontent.com/buckyroberts/0688f136b6c1332be472a"
+            "8baf10f78c5/raw/323fcd29672e392be2b934b82ab9eac8d15e840f/alpha-00.json",
             "root_account_file_hash": "0f775023bee79884fbd9a90a76c5eacfee38a8ca52735f7ab59dab63a75cbee1",
             "seed_block_identifier": "",
             "daily_confirmation_rate": None,
@@ -431,7 +438,10 @@ def test_success_patch_validator(requests_mock):
     }
 
     node_id = "d5356888dc9303e44ce52b1e06c3165a7759b9df1e6a6dfbd33ee1c3df1ab4d1"
-    signature = "3c88665e123e7e25a8b9d9592f3269ab4efc4bcba989a103a898e2625933261b1cccdaf2f52eca9c58d2bf033968ab6b702089bca8fc6e0c80b3b002a5e05b03"
+    signature = (
+        "3c88665e123e7e25a8b9d9592f3269ab4efc4bcba989a103a898e2625933261b1cccdaf2"
+        "f52eca9c58d2bf033968ab6b702089bca8fc6e0c80b3b002a5e05b03"
+    )
     requests_mock.patch(f"http://42.0.6.9:80/validators/{node_id}", json=result)
 
     validator = Validator(address="42.0.6.9")
