@@ -34,7 +34,10 @@ def write_signing_key_file(signing_key: str, file: str):
     """
 
     if not isinstance(signing_key, SigningKey):
-        raise RuntimeError("signing_key must be of type nacl.signing.SigningKey")
+        raise RuntimeError(
+            "signing_key must be of \
+            typenacl.signing.SigningKey"
+        )
 
     if path.exists(file):
         raise RuntimeError(f"{file} already exists")
