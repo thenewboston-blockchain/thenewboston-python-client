@@ -164,7 +164,7 @@ def test_success_fetch_config(requests_mock):
 
 
 def test_success_connection_request(requests_mock):
-    result = []
+    result = {}
 
     requests_mock.post(
         "http://42.0.6.9:80/connection_requests",
@@ -173,6 +173,9 @@ def test_success_connection_request(requests_mock):
 
     validator = Validator(address="42.0.6.9")
     response = validator.connection_requests(
+        address="42.0.6.10",
+        port=80,
+        protocol="http",
         node_id="d5356888dc9303e44ce52b1e06c3165a7759b9df1e6a6dfbd33ee1c3df1ab4d1",
         signature="3c88665e123e7e25a8b9d9592f3269ab4efc4bcba989a103a898e2625933261b"
         "1cccdaf2f52eca9c58d2bf033968ab6b702089bca8fc6e0c80b3b002a5e05b03",

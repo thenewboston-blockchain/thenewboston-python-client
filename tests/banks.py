@@ -702,7 +702,7 @@ def test_success_send_confirmation_block(requests_mock):
 
 
 def test_success_connection_requests(requests_mock):
-    result = []
+    result = {}
     requests_mock.post(
         "http://10.2.3.4:80/connection_requests",
         json=result,
@@ -710,6 +710,9 @@ def test_success_connection_requests(requests_mock):
 
     bank = Bank(address="10.2.3.4")
     response = bank.connection_requests(
+        address="10.2.3.5",
+        port=8000,
+        protocol="http",
         node_id="d5356888dc9303e44ce52b1e06c3165a7759b9df1e6a6dfbd33ee1c3df1",
         signature="f41788fe19690a67abe3336d4ca84565c090691efae0e5cdd8bf02e12",
     )

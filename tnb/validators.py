@@ -51,22 +51,27 @@ class Validator(BaseClient):
         """
         return self.fetch("/config")
 
-    def connection_requests(self, node_id: str, signature: str) -> dict:
+    def connection_requests(
+        self, address: str, port: int, protocol: str, node_id: str, signature: str
+    ) -> dict:
         """
-        Send connection request
+        Send connection request to the Validator
 
-        :param node_id: The Node Identifier of the Bank
-        :param signature: The signature is signed by Bank's Node Identifier
-            Signing Key
+        :param address: The IP address of requesting node
+        :param port: The port of requesting node
+        :param protocol: The protocol of requesting node
+        :param node_id: The Node Identifier of the requesting node
+        :param signature: The signature is signed by requesting node Identifier
+            signing key
 
         Return response as Python object
         """
 
         body = {
             "message": {
-                "ip_address": self.address,
-                "port": self.port,
-                "protocol": self.protocol,
+                "ip_address": address,
+                "port": port,
+                "protocol": protocol,
             },
             "node_identifier": node_id,
             "signature": signature,
