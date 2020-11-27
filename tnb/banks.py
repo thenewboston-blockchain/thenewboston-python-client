@@ -241,7 +241,8 @@ class Bank(BaseClient):
         :param block: The invalid block
         :param block_identifier: ID for the block
         :param primary_validator_node_identifier: Primary Validator's Node Identifier
-        :param node_identifier: Node Identifier of Confirmation Validator sending the request
+        :param node_identifier: Node Identifier of Confirmation Validator \
+        sending the request
         :param signature: Hex value of the signed message
 
         Return response as Python object
@@ -266,7 +267,6 @@ class Bank(BaseClient):
         Post an upgrade notice to a bank and get the result status code
 
         :param bank_node_identifier: Node identifier of bank receiving the request
-
         :param node_identifier: Node identifier of Validator sending the request
         :param signature: Signature of the message
 

@@ -142,7 +142,7 @@ class Validator(BaseClient):
         """
         return self.fetch(f"/validators/{node_id}")
 
-    def patch_validator(self, node_id: str, trust: float, signature: str) -> dict:
+    def patch_validators(self, node_id: str, trust: float, signature: str) -> dict:
         """
         Set Validator trust level
 
@@ -164,14 +164,18 @@ class Validator(BaseClient):
         return self.patch(resource, body=body)
 
     def post_upgrade_request(
-        self, validator_node_identifier: str, node_identifier: str, signature: str
+        self,
+        validator_node_identifier: str,
+        node_identifier: str,
+        signature: str,
     ) -> dict:
         """
         Post an upgrade notice to a validator and get the result status code
 
-        :param validator_node_identifier: Node identifier of bank receiving the request
-
-        :param node_identifier: Node identifier of Validator sending the request
+        :param validator_node_identifier: Node identifier of bank receiving
+        the request
+        :param node_identifier: Node identifier of Validator sending
+        the request
         :param signature: Signature of the message
 
         Return response as Python object
