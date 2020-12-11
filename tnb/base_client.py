@@ -9,7 +9,7 @@ class BaseClient(object):
     Common class for sending request to server
     """
 
-    def __init__(self, *, address: str, protocol="http", port=80):
+    def __init__(self, *, address: str, protocol: str = "http", port: int = 80) -> None:
         self.address = address
         self.protocol = protocol
         self.port = port
