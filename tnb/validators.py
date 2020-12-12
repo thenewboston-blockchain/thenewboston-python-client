@@ -1,8 +1,10 @@
+from typing import Union
+
 from tnb.base_client import BaseClient
 
 
 class Validator(BaseClient):
-    def fetch_accounts(self, offset: int = 0, limit: int = 50) -> dict:
+    def fetch_accounts(self, offset: int = 0, limit: int = 50) -> Union[dict, list]:
         """
         Fetch accounts from validator
 
@@ -14,7 +16,7 @@ class Validator(BaseClient):
         params = {"offset": offset, "limit": limit}
         return self.fetch("/accounts", params=params)
 
-    def fetch_account_balance(self, account_number: str) -> dict:
+    def fetch_account_balance(self, account_number: str) -> Union[dict, list]:
         """
         Fetch account balance from account
         :param account_number: The account number of the account
@@ -24,7 +26,7 @@ class Validator(BaseClient):
 
         return self.fetch(f"/accounts/{account_number}/balance")
 
-    def fetch_account_balance_lock(self, account_number: str) -> dict:
+    def fetch_account_balance_lock(self, account_number: str) -> Union[dict, list]:
         """
         Fetch balance lock for account with number account_number
         :param account_number: The account number of the account
@@ -33,7 +35,7 @@ class Validator(BaseClient):
         """
         return self.fetch(f"/accounts/{account_number}/balance_lock")
 
-    def fetch_confirmation_block(self, block_identifier: str) -> dict:
+    def fetch_confirmation_block(self, block_identifier: str) -> Union[dict, list]:
         """
         Fetch confirmation block by block_identifier
         :param block_identifier: ID for the block
@@ -43,7 +45,7 @@ class Validator(BaseClient):
 
         return self.fetch(f"/confirmation_blocks/{block_identifier}/valid")
 
-    def fetch_validator_config(self) -> dict:
+    def fetch_validator_config(self) -> Union[dict, list]:
         """
         Fetch config from validator
 
@@ -53,7 +55,7 @@ class Validator(BaseClient):
 
     def connection_requests(
         self, address: str, port: int, protocol: str, node_id: str, signature: str
-    ) -> dict:
+    ) -> Union[dict, list]:
         """
         Send connection request to the Validator
 
@@ -79,7 +81,7 @@ class Validator(BaseClient):
 
         return self.post("/connection_requests", body=body)
 
-    def fetch_banks(self, offset: int = 0, limit: int = 50) -> dict:
+    def fetch_banks(self, offset: int = 0, limit: int = 50) -> Union[dict, list]:
         """
         Fetch Bank list
 
@@ -91,7 +93,7 @@ class Validator(BaseClient):
         params = {"offset": offset, "limit": limit}
         return self.fetch("/banks", params=params)
 
-    def fetch_bank(self, node_id: str) -> dict:
+    def fetch_bank(self, node_id: str) -> Union[dict, list]:
         """
         Fetch Bank
 
@@ -101,7 +103,9 @@ class Validator(BaseClient):
         """
         return self.fetch(f"/banks/{node_id}")
 
-    def patch_bank(self, trust: float, node_id: str, signature: str) -> dict:
+    def patch_bank(
+        self, trust: float, node_id: str, signature: str
+    ) -> Union[dict, list]:
         """
         Set trust level
 
@@ -120,7 +124,7 @@ class Validator(BaseClient):
 
         return self.patch(resource, body=body)
 
-    def fetch_validators(self, offset: int = 0, limit: int = 50) -> dict:
+    def fetch_validators(self, offset: int = 0, limit: int = 50) -> Union[dict, list]:
         """
         Fetch Validators
 
@@ -132,7 +136,7 @@ class Validator(BaseClient):
         params = {"offset": offset, "limit": limit}
         return self.fetch("/validators", params=params)
 
-    def fetch_validator(self, node_id: str) -> dict:
+    def fetch_validator(self, node_id: str) -> Union[dict, list]:
         """
         Fetch Validator
 
@@ -142,7 +146,9 @@ class Validator(BaseClient):
         """
         return self.fetch(f"/validators/{node_id}")
 
-    def patch_validators(self, node_id: str, trust: float, signature: str) -> dict:
+    def patch_validators(
+        self, node_id: str, trust: float, signature: str
+    ) -> Union[dict, list]:
         """
         Set Validator trust level
 
@@ -168,7 +174,7 @@ class Validator(BaseClient):
         validator_node_identifier: str,
         node_identifier: str,
         signature: str,
-    ) -> dict:
+    ) -> Union[dict, list]:
         """
         Post an upgrade notice to a validator and get the result status code
 

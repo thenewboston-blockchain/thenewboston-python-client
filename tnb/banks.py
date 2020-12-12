@@ -1,8 +1,10 @@
+from typing import Union
+
 from tnb.base_client import BaseClient
 
 
 class Bank(BaseClient):
-    def fetch_accounts(self, offset: int = 0, limit: int = 50) -> dict:
+    def fetch_accounts(self, offset: int = 0, limit: int = 50) -> Union[dict, list]:
         """
         Fetch accounts from a Bank
 
@@ -14,7 +16,9 @@ class Bank(BaseClient):
         params = {"offset": offset, "limit": limit}
         return self.fetch("/accounts", params=params)
 
-    def fetch_bank_transactions(self, offset: int = 0, limit: int = 50) -> dict:
+    def fetch_bank_transactions(
+        self, offset: int = 0, limit: int = 50
+    ) -> Union[dict, list]:
         """
         Get transactions from a Bank
 
@@ -26,7 +30,9 @@ class Bank(BaseClient):
         params = {"offset": offset, "limit": limit}
         return self.fetch("/bank_transactions", params=params)
 
-    def fetch_invalid_blocks(self, offset: int = 0, limit: int = 50) -> dict:
+    def fetch_invalid_blocks(
+        self, offset: int = 0, limit: int = 50
+    ) -> Union[dict, list]:
         """
         Get invalid block from a Bank
 
@@ -38,7 +44,9 @@ class Bank(BaseClient):
         params = {"offset": offset, "limit": limit}
         return self.fetch("/invalid_blocks", params=params)
 
-    def fetch_confirmation_blocks(self, offset: int = 0, limit: int = 50) -> dict:
+    def fetch_confirmation_blocks(
+        self, offset: int = 0, limit: int = 50
+    ) -> Union[dict, list]:
         """
         Get confirmation blocks from a Bank
 
@@ -50,7 +58,7 @@ class Bank(BaseClient):
         params = {"offset": offset, "limit": limit}
         return self.fetch("/confirmation_blocks", params=params)
 
-    def fetch_validators(self, offset: int = 0, limit: int = 50) -> dict:
+    def fetch_validators(self, offset: int = 0, limit: int = 50) -> Union[dict, list]:
         """
         Get validators from a Bank
 
@@ -64,7 +72,7 @@ class Bank(BaseClient):
 
     def fetch_validator_confirmation_services(
         self, offset: int = 0, limit: int = 50
-    ) -> dict:
+    ) -> Union[dict, list]:
         """
         Get validators confirmation services from a Bank
 
@@ -77,8 +85,8 @@ class Bank(BaseClient):
         return self.fetch("/validator_confirmation_services", params=params)
 
     def create_validator_confirmation_service(
-        self, msg_end: str, msg_start: str, node_id: str, signature
-    ) -> dict:
+        self, msg_end: str, msg_start: str, node_id: str, signature: str
+    ) -> Union[dict, list]:
         """
         Create validators confirmation services from a Bank
 
@@ -99,7 +107,7 @@ class Bank(BaseClient):
         }
         return self.post("/validator_confirmation_services", body=body)
 
-    def fetch_banks(self, offset: int = 0, limit: int = 50) -> dict:
+    def fetch_banks(self, offset: int = 0, limit: int = 50) -> Union[dict, list]:
         """
         Get banks from current bank.
 
@@ -111,7 +119,7 @@ class Bank(BaseClient):
         params = {"offset": offset, "limit": limit}
         return self.fetch("/banks", params=params)
 
-    def fetch_config(self) -> dict:
+    def fetch_config(self) -> Union[dict, list]:
         """
         Get config from a Bank
         Return response as Python object
@@ -120,7 +128,7 @@ class Bank(BaseClient):
 
     def patch_trust_level(
         self, trust: float, node_identifier: str, signature: str
-    ) -> dict:
+    ) -> Union[dict, list]:
         """
         Set bank trust level
         :param trust: Trust value as a float
@@ -139,7 +147,7 @@ class Bank(BaseClient):
 
     def patch_account(
         self, account_number: str, node_id: str, trust: float, signature: str
-    ) -> dict:
+    ) -> Union[dict, list]:
         """
         Send a PATCH request of an account to a Bank
 
@@ -160,7 +168,9 @@ class Bank(BaseClient):
 
         return self.patch(resource, body=body)
 
-    def patch_validator(self, node_id: str, trust: float, signature: str) -> dict:
+    def patch_validator(
+        self, node_id: str, trust: float, signature: str
+    ) -> Union[dict, list]:
         """
         Send a PATCH request of a validator to a Bank
 
@@ -181,7 +191,9 @@ class Bank(BaseClient):
 
         return self.patch(resource, body=body)
 
-    def send_confirmation_block(self, message, node_id: str, signature: str) -> dict:
+    def send_confirmation_block(
+        self, message: dict, node_id: str, signature: str
+    ) -> Union[dict, list]:
         """
         Send a confirmation block to a Bank.
 
@@ -202,7 +214,7 @@ class Bank(BaseClient):
 
     def connection_requests(
         self, address: str, port: int, protocol: str, node_id: str, signature: str
-    ) -> dict:
+    ) -> Union[dict, list]:
         """
         Send a connection request to the Bank
 
@@ -234,7 +246,7 @@ class Bank(BaseClient):
         primary_validator_node_identifier: str,
         node_identifier: str,
         signature: str,
-    ) -> dict:
+    ) -> Union[dict, list]:
         """
         Post an invalid block to a Bank
 
@@ -262,7 +274,7 @@ class Bank(BaseClient):
 
     def post_upgrade_notice(
         self, bank_node_identifier: str, node_identifier: str, signature: str
-    ) -> dict:
+    ) -> Union[dict, list]:
         """
         Post an upgrade notice to a bank and get the result status code
 
@@ -280,7 +292,7 @@ class Bank(BaseClient):
         }
         return self.post("/upgrade_notice", body=body)
 
-    def fetch_blocks(self, offset: int = 0, limit: int = 50) -> dict:
+    def fetch_blocks(self, offset: int = 0, limit: int = 50) -> Union[dict, list]:
         """
         Get blocks from a Bank
 
@@ -294,7 +306,7 @@ class Bank(BaseClient):
 
     def post_block(
         self, account_number: str, balance_key: str, transactions: list, signature: str
-    ) -> dict:
+    ) -> Union[dict, list]:
         """
         Send a block request to a Bank
 
